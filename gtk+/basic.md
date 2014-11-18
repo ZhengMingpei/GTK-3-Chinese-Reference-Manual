@@ -2,6 +2,7 @@
 
 我们用一个最简单的程序来开始对GTK的介绍，下面的程序将创造一个200×200像素的窗体。
 ![window_default](../images/window_default.png)
+
 新建一个名为 `example-0.c` 的文件，写入如下内容：
 
 ```c
