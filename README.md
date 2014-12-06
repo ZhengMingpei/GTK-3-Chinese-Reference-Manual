@@ -3,7 +3,7 @@
 >受[ The Swift Programming Language 中文版项目](https://github.com/numbbbbb/the-swift-programming-language-in-chinese)启发，决定也用[GitBook](https://www.gitbook.io/)完成这个翻译项目。
 
 
->个人能力有限，如果你对这个项目感兴趣，可以帮助完成这个项目。详情见[项目主页](https://github.com/ZhengMingpei/GTK-3-Chinese-Reference-Manual)。最后更新于 2014/11/14 。
+>个人能力有限，如果你对这个项目感兴趣，可以帮助完成这个项目。详情见[项目主页](https://github.com/ZhengMingpei/GTK-3-Chinese-Reference-Manual)。最后更新于 2014/12/06 。
 
 # GTK+ 3 Chinese Reference Manual
 
