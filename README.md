@@ -12,6 +12,16 @@
 
 该参考手册适用于GTK+3的3.14.5版本，最新版本的参考手册可以去[这里](http://developer.gnome.org/gtk3/)在线查看。如果你在寻找GTK2的手册，可以移步到[这里](http://developer.gnome.org/gtk2/)查看。
 
+### 目录结构
+
+* [GTK+ 概览](content/README.md)
+   * [开始使用GTK+](content/gtk+.md)
+       * [基础](content/basic.md)
+       * [填充](content/packing.md)
+       * [绘制](content/drawing.md)
+       * [构建用户界面](content/building_ui.md)
+       * [构建应用程序](content/building_app.md)
+
 ### 参与流程
 
 1. fork项目
