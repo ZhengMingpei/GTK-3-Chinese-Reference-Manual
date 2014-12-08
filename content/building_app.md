@@ -153,6 +153,7 @@ example_app_window_open (ExampleAppWindow *win,
 ```
 
 作为我们应用程序初始化中的一部分，我们创建一个图标和一个桌面文件。
+
 ![exampleapp.png](../images/exampleapp.png)
 
 ```
@@ -166,6 +167,7 @@ Exec=@bindir@/exampleapp
 **注意** @bindir@需要被实际的二进制文件路径替代，这样桌面文件才能使用。
 
 这就是目前我们实现的:
+
 ![getting-started-app1.png](../images/getting-started-app1.png)
 
 至今我们的程序并没那么瞩目，但是它已经在会话总线上出现，它有单个实例，而且它接受文件作为命令行参数。
@@ -252,6 +254,7 @@ glib-compile-resources exampleapp.gresource.xml --target=resources.c --generate-
 ```
 
 Our application now looks like this:
+
 ![getting-started-app2.png](../images/getting-started-app2.png)
 
 
@@ -334,9 +337,10 @@ example_app_window_open (ExampleAppWindow *win,
 Note that we did not have to touch the stack switcher at all. It gets all its information from the stack that it belongs to. Here, we are passing the label to show for each file as the last argument to the gtk_stack_add_titled() function.
 
 Our application is beginning to take shape:
+
 ![getting-started-app3.png](../images/getting-started-app3.png)
 
-An application menu
+### An application menu
 
 An application menu is shown by GNOME shell at the top of the screen. It is meant to collect infrequently used actions that affect the whole application.
 
