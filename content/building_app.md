@@ -31,11 +31,12 @@ main (int argc, char *argv[])
   return g_application_run (G_APPLICATION (example_app_new ()), argc, argv);
 }
 ```
-All the application logic is in the application class, which is a subclass of GtkApplication. Our example does not yet have any interesting functionality. All it does is open a window when it is activated without arguments, and open the files it is given, if it is started with arguments.
 
-To handle these two cases, we override the activate() vfunc, which gets called when the application is launched without commandline arguments, and the open() vfunc, which gets called when the application is launched with commandline arguments.
+所有的应用程序逻辑都在GtkApplicaton的子类中。我们的范例还没有任何有趣的功能。它所做的只是当它没有传递参数而被激活时打开一个窗口和传递了参数被激活时打开给定的文件。  
 
-To learn more about GApplication entry points, consult the GIO documentation.
+为了处理这两种情况，我们重载了activate()vfunc，当应用程序被加载没有命令行参数时它被调用，当应用程序被加载并带有命令行参数时，调用open()vfunc。
+
+想知道更多关于Gapplication入口知识，请查看GIO文档。
 
 ```c
 #include <gtk/gtk.h>
