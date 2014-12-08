@@ -30,7 +30,7 @@
 
 
         
-    <div class="book"  data-level="0" data-basepath="." data-revision="1417874722676">
+    <div class="book"  data-level="0" data-basepath="." data-revision="1418015747731">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -223,15 +223,46 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_4">
+                    <section class="normal" id="section-gitbook_297">
                     
                         <blockquote>
 <p>之前看到在<a href="https://www.transifex.com/" target="_blank"> Transifex </a>平台上有一个<a href="https://www.transifex.com/organization/yetist/dashboard/gtk3-reference-manual" target="_blank"> GTK+3 参考手册的翻译项目</a>，但更新乏力，版本滞后，就产生了翻译新版参考手册的冲动。</p>
 <p>受<a href="https://github.com/numbbbbb/the-swift-programming-language-in-chinese" target="_blank"> The Swift Programming Language 中文版项目</a>启发，决定也用<a href="https://www.gitbook.io/" target="_blank">GitBook</a>完成这个翻译项目。</p>
-<p>个人能力有限，如果你对这个项目感兴趣，可以帮助完成这个项目。详情见<a href="https://github.com/ZhengMingpei/GTK-3-Chinese-Reference-Manual" target="_blank">项目主页</a>。最后更新于 2014/12/06 。</p>
+<p>个人能力有限，如果你对这个项目感兴趣，可以帮助完成这个项目,参与方式及详情见<a href="https://github.com/ZhengMingpei/GTK-3-Chinese-Reference-Manual" target="_blank">项目主页</a>，目前的参与者已经有<a href="https://github.com/ZhengMingpei" target="_blank">ZhengMingpei</a> 和<a href="https://github.com/truehyp" target="_blank">truehyp</a>两人，本文最后更新于 2014/12/08 。</p>
 </blockquote>
 <h1 id="gtk-3-chinese-reference-manual">GTK+ 3 Chinese Reference Manual</h1>
 <p>该参考手册适用于GTK+3的3.14.5版本，最新版本的参考手册可以去<a href="http://developer.gnome.org/gtk3/" target="_blank">这里</a>在线查看。如果你在寻找GTK2的手册，可以移步到<a href="http://developer.gnome.org/gtk2/" target="_blank">这里</a>查看。</p>
+<h3 id="-">目录结构</h3>
+<ul>
+<li><a href="content/README.html">GTK+ 概览</a><ul>
+<li><a href="content/gtk+.html">开始使用GTK+</a><ul>
+<li><a href="content/basic.html">基础</a></li>
+<li><a href="content/packing.html">填充</a></li>
+<li><a href="content/drawing.html">绘制</a></li>
+<li><a href="content/building_ui.html">构建用户界面</a></li>
+<li><a href="content/building_app.html">构建应用程序</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="-">参与流程</h3>
+<ol>
+<li>fork项目</li>
+<li>把fork过去的项目也就是你的项目clone到你的本地</li>
+<li><code>git branch dev</code> 创建dev分支</li>
+<li><code>git checkout dev</code>切换到dev分支</li>
+<li><code>git remote add upstream https://github.com/ZhengMingpei/GTK-3-Chinese-Reference-Manual.git</code> 将我的库添加到远程库。可以用<code>git remote -v</code>查看</li>
+<li><code>git remote update</code>更新远程库</li>
+<li><code>git fetch upstream master</code> 拉取库的更新到本地</li>
+<li><code>git rebase upstream/master</code>将更新合并到本地你的分支</li>
+</ol>
+<p>修改之后，先push到你的库，然后登录GitHub,在你的库首页找到pull request按钮，点击填写说明，然后提交。</p>
+<h3 id="-">目前的两名参与者</h3>
+<ul>
+<li><a href="https://github.com/ZhengMingpei" target="_blank">ZhengMingpei</a>  加入于2014年11月</li>
+<li><a href="https://github.com/truehyp" target="_blank">truehyp</a>  加入于2014年12月</li>
+</ul>
 
                     
                     </section>
