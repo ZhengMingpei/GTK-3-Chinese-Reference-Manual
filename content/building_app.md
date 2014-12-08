@@ -31,11 +31,12 @@ main (int argc, char *argv[])
   return g_application_run (G_APPLICATION (example_app_new ()), argc, argv);
 }
 ```
-All the application logic is in the application class, which is a subclass of GtkApplication. Our example does not yet have any interesting functionality. All it does is open a window when it is activated without arguments, and open the files it is given, if it is started with arguments.
 
-To handle these two cases, we override the activate() vfunc, which gets called when the application is launched without commandline arguments, and the open() vfunc, which gets called when the application is launched with commandline arguments.
+所有的应用程序逻辑都在GtkApplicaton的子类中。我们的范例还没有任何有趣的功能。它所做的只是当它没有传递参数而被激活时打开一个窗口和传递了参数被激活时打开给定的文件。  
 
-To learn more about GApplication entry points, consult the GIO documentation.
+为了处理这两种情况，我们重载了activate()vfunc，当应用程序被加载没有命令行参数时它被调用，当应用程序被加载并带有命令行参数时，调用open()vfunc。
+
+想知道更多关于Gapplication入口知识，请查看GIO文档。
 
 ```c
 #include <gtk/gtk.h>
@@ -108,7 +109,7 @@ example_app_new (void)
 }
 ```
 
-Another important class that is part of the application support in GTK+ is GtkApplicationWindow. It is typically subclassed as well. Our subclass does not do anything yet, so we will just get an empty window.
+应用程序中另一个受GTK+支持的重要的类是GtkApplicationWindow。它通常也是子类。我们的子类不做任何事，因此我们只得到一个空的窗口。
 
 
 ```c
@@ -151,27 +152,31 @@ example_app_window_open (ExampleAppWindow *win,
 }
 ```
 
-As part of the initial setup of our application, we also create an icon and a desktop file.
+作为我们应用程序初始化中的一部分，我们创建一个图标和一个桌面文件。
 
+![exampleapp.png](../images/exampleapp.png)
 
+```
 [Desktop Entry]
 Type=Application
 Name=Example
 Icon=exampleapp
 StartupNotify=true
 Exec=@bindir@/exampleapp
-Note that @bindir@ needs to be replaced with the actual path to the binary before this desktop file can be used.
+```
+**注意** @bindir@需要被实际的二进制文件路径替代，这样桌面文件才能使用。
 
-Here is what we've achieved so far:
+这就是目前我们实现的:
 
+![getting-started-app1.png](../images/getting-started-app1.png)
 
-This does not look very impressive yet, but our application is already presenting itself on the session bus, it has single-instance semantics, and it accepts files as commandline arguments.
+至今我们的程序并没那么瞩目，但是它已经在会话总线上出现，它有单个实例，而且它接受文件作为命令行参数。
 
-Populating the window
+### 填充窗口
 
-In this step, we use a GtkBuilder template to associate a GtkBuilder ui file with our application window class.
+在这节中，我们用GtkBuilder 模板结合一个GtkBuilder ui 文件和我们的应用程序窗口类。
 
-Our simple ui file puts a GtkHeaderBar on top of a GtkStack widget. The header bar contains a GtkStackSwitcher, which is a standalone widget to show a row of 'tabs' for the pages of a GtkStack.
+我们的简易ui 文件把GtkHeaderBar 放在GtkStack 部件顶端。头栏包括一个显示GtkStack 页面分页的一行的独立部件——GtkStackSwitcher。 
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -207,7 +212,7 @@ Our simple ui file puts a GtkHeaderBar on top of a GtkStack widget. The header b
   </template>
 </interface>
 ```
-To make use of this file in our application, we revisit our GtkApplicationWindow subclass, and call gtk_widget_class_set_template_from_resource() from the class init function to set the ui file as template for this class. We also add a call to gtk_widget_init_template() in the instance init function to instantiate the template for each instance of our class.
+为了在我们的应用程序中使用这个文件，我们回到我们的GtkApplicationWindow 子类，从类初始化函数中调用gtk_widget_class_set_template_from_resource() 来把ui 文件设为这个类的模板。在实例初始化函数中我们增加gtk_widget_init_template() 去为我们的类的个体实例化模板。
 
 ```
  ...
@@ -229,7 +234,7 @@ example_app_window_class_init (ExampleAppWindowClass *class)
 
  ```
 
-(full source)
+([full source](https://git.gnome.org/browse/gtk+/tree/examples/application2/exampleappwin.c))
 
 You may have noticed that we used the _from_resource() variant of the function that sets a template. Now we need to use GLib's resource functionality to include the ui file in the binary. This is commonly done by listing all resources in a .gresource.xml file, such as this:
 
@@ -250,8 +255,10 @@ glib-compile-resources exampleapp.gresource.xml --target=resources.c --generate-
 
 Our application now looks like this:
 
+![getting-started-app2.png](../images/getting-started-app2.png)
 
-Opening files
+
+### 打开文件
 
 In this step, we make our application show the content of all the files that it is given on the commandline.
 
@@ -280,7 +287,7 @@ example_app_window_class_init (ExampleAppWindowClass *class)
 ...
 ```
 
-(full source)
+([full source](https://git.gnome.org/browse/gtk+/tree/examples/application3/exampleappwin.c))
 
 Now we revisit the example_app_window_open() function that is called for each commandline argument, and construct a GtkTextView that we then add as a page to the stack:
 
@@ -325,14 +332,15 @@ example_app_window_open (ExampleAppWindow *win,
 
 ...
 ```
-(full source)
+([full source](https://git.gnome.org/browse/gtk+/tree/examples/application3/exampleappwin.c))
 
 Note that we did not have to touch the stack switcher at all. It gets all its information from the stack that it belongs to. Here, we are passing the label to show for each file as the last argument to the gtk_stack_add_titled() function.
 
 Our application is beginning to take shape:
 
+![getting-started-app3.png](../images/getting-started-app3.png)
 
-An application menu
+### An application menu
 
 An application menu is shown by GNOME shell at the top of the screen. It is meant to collect infrequently used actions that affect the whole application.
 
@@ -418,14 +426,15 @@ example_app_class_init (ExampleAppClass *class)
 
 ...
 ```
-(full source)
+([full source](https://git.gnome.org/browse/gtk+/tree/examples/application4/exampleapp.c))
 
 Our preferences menu item does not do anything yet, but the Quit menu item is fully functional. Note that it can also be activated by the usual Ctrl-Q shortcut. The shortcut was added with gtk_application_set_accels_for_action().
 
 The application menu looks like this:
+![getting-started-app4.png](../images/getting-started-app4.png)
 
 
-A preference dialog
+### A preference dialog
 
 A typical application will have a some preferences that should be remembered from one run to the next. Even for our simple example application, we may want to change the font that is used for the content.
 
@@ -476,7 +485,7 @@ example_app_window_init (ExampleAppWindow *win)
 
 ...
 ```
-(full source)
+([full source](https://git.gnome.org/browse/gtk+/tree/examples/application5/exampleappwin.c))
 
 The code to connect the font setting is a little more involved, since there is no simple object property that it corresponds to, so we are not going to go into that here.
 
@@ -652,12 +661,13 @@ preferences_activated (GSimpleAction *action,
 
 ...
 ```
-(full source)
+([full source](https://git.gnome.org/browse/gtk+/tree/examples/application6/exampleapp.c))
 
 After all this work, our application can now show a preference dialog like this:
 
+![getting-started-app6.png](../images/getting-started-app6.png)
 
-Adding a search bar
+### Adding a search bar
 
 We continue to flesh out the functionality of our application. For now, we add search. GTK+ supports this with GtkSearchEntry and GtkSearchBar. The search bar is a widget that can slide in from the top to present a search entry.
 
@@ -781,12 +791,12 @@ example_app_window_init (ExampleAppWindow *win)
 ...
 ```
 
-(full source)
+([full source](https://git.gnome.org/browse/gtk+/tree/examples/application7/exampleappwin.c))
 
 With the search bar, our application now looks like this:
+![getting-started-app7.png](../images/getting-started-app7.png)
 
-
-Adding a side bar
+### Adding a side bar
 
 As another piece of functionality, we are adding a sidebar, which demonstrates GtkMenuButton, GtkRevealer and GtkListBox.
 
@@ -933,12 +943,12 @@ example_app_window_init (ExampleAppWindow *win)
 
 ...
 ```
-(full source)
+([full source](https://git.gnome.org/browse/gtk+/tree/examples/application8/exampleappwin.c))
 
 What our application looks like now:
+![getting-started-app8.png](../images/getting-started-app8.png)
 
-
-Properties
+### Properties
 
 Widgets and other objects have many useful properties.
 
@@ -989,14 +999,15 @@ example_app_window_init (ExampleAppWindow *win)
 
 ...
 ```
-(full source)
+([full source](https://git.gnome.org/browse/gtk+/tree/examples/application9/exampleappwin.c))
 
 We also need a function that counts the lines of the currently active tab, and updates the lines label. See the full source if you are interested in the details.
 
 This brings our example application to this appearance:
 
+![getting-started-app9.png](../images/getting-started-app9.png)
 
-Header bar
+### Header bar
 
 Our application already uses a GtkHeaderBar, but so far it still gets a 'normal' window titlebar on top of that. This is a bit redundant, and we will now tell GTK+ to use the header bar as replacement for the titlebar. To do so, we move it around to be a direct child of the window, and set its type to be titlebar.
 
@@ -1122,6 +1133,7 @@ Our application already uses a GtkHeaderBar, but so far it still gets a 'normal'
 ```
 A small extra bonus of using a header bar is that we get a fallback application menu for free. Here is how the application now looks, if this fallback is used.
 
+![getting-started-app10.png](../images/getting-started-app10.png)
 
 If we set up the window icon for our window, the menu button will use that instead of the generic placeholder icon you see here.
 
