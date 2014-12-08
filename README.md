@@ -19,6 +19,16 @@
        * [绘制](content/drawing.md)
        * [构建用户界面](content/building_ui.md)
        * [构建应用程序](content/building_app.md)
+		   * [一个小应用](content/building_app.md#一个小应用)
+		   * [填充窗口](content/building_app.md#填充窗口)
+		   * [打开文件](content/building_app.md#打开文件)
+		   * 一个应用菜单
+		   * 一个选项对话框
+		   * 增加搜索条
+		   * 增加侧边栏
+		   * 属性
+		   * 标题栏
+
 
 ### 参与流程
 
