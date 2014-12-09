@@ -437,9 +437,10 @@ example_app_class_init (ExampleAppClass *class)
 
 ### 一个偏好对话框
 
-A typical application will have a some preferences that should be remembered from one run to the next. Even for our simple example application, we may want to change the font that is used for the content.
+一个典型的应用程序应该有一些偏好设置，在每次打开时都能被记住。即使是为这个小范例程序，我们也将想改变正文的字体。
 
-We are going to use GSettings to store our preferences. GSettings requires a schema that describes our settings:
+
+我们将用GSettings 来保存偏好设置，GSettings 需要一个描述我们设置的模式。
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -463,9 +464,9 @@ We are going to use GSettings to store our preferences. GSettings requires a sch
   </schema>
 </schemalist>
 ```
-Before we can make use of this schema in our application, we need to compile it into the binary form that GSettings expects. GIO provides macros to do this in autotools-based projects.
+当我们在应用程序中使用这个模式之前，我们需要从GSettings 中将这编译进二进制文件。GIO 提供`macros`来在工程中做这件事。
 
-Next, we need to connect our settings to the widgets that they are supposed to control. One convenient way to do this is to use GSettings bind functionality to bind settings keys to object properties, as we do here for the transition setting.
+接着，我们需要连接settings 和我们的目标部件。一个简便的方法是用GSettings bind 函数绑定设定关键词和目标属性，就像我们这里为转换设置做的。
 
 ```c
 ...
@@ -488,11 +489,11 @@ example_app_window_init (ExampleAppWindow *win)
 ```
 ([full source](https://git.gnome.org/browse/gtk+/tree/examples/application5/exampleappwin.c))
 
-The code to connect the font setting is a little more involved, since there is no simple object property that it corresponds to, so we are not going to go into that here.
+这个连接字体设置的代码有点儿复杂，因为我们没有对应的简单的目标属性，我们本没打算这么做。
 
-At this point, the application will already react if you change one of the settings, e.g. using the gsettings commandline tool. Of course, we expect the application to provide a preference dialog for these. So lets do that now. Our preference dialog will be a subclass of GtkDialog, and we'll use the same techniques that we've already seen: templates, private structs, settings bindings.
+至此，如果我们改变一个设置，程序将会有反应，比如用gsettings 命令行工具。当然，我们希望应用程序提供一个偏好对话框。所以干吧，我们的偏好对话框是GtkDialog 的子类，我们将使用我们已经用过的技术：templates,private structs, settingbindings。
 
-Lets start with the template.
+让我们从模板开始。
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -566,7 +567,8 @@ Lets start with the template.
   </template>
 </interface>
 ```
-Next comes the dialog subclass.
+
+接下来是对话框子类。
 
 ```c
 #include <gtk/gtk.h>
@@ -642,7 +644,7 @@ example_app_prefs_new (ExampleAppWindow *win)
 }
 
 ```
-Now we revisit the preferences_activated() function in our application class, and make it open a new preference dialog.
+现在我们再看`preferences_activated()`函数，使它打开一个偏好对话框。
 
 ```c
 ...
@@ -664,15 +666,16 @@ preferences_activated (GSimpleAction *action,
 ```
 ([full source](https://git.gnome.org/browse/gtk+/tree/examples/application6/exampleapp.c))
 
-After all this work, our application can now show a preference dialog like this:
+完成所有这些工作后，我们的应用程序现在可以像这样显示一个偏好对话框：
+
 
 ![getting-started-app6.png](../images/getting-started-app6.png)
 
-### Adding a search bar
+### 增加搜索条
 
-We continue to flesh out the functionality of our application. For now, we add search. GTK+ supports this with GtkSearchEntry and GtkSearchBar. The search bar is a widget that can slide in from the top to present a search entry.
+我们继续充实我们应用程序的功能。如今，我们添加搜索。GTK+在`GtkSearchEntry`和`Gtksearchbar`中支持这个功能。搜索条是一个可以嵌入顶端来展现搜索输入。
 
-We add a toggle button to the header bar, which can be used to slide out the search bar below the header bar.
+我们在头栏增加一个开关按钮，他可以用来滑出头栏下的搜索条。
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -739,7 +742,7 @@ We add a toggle button to the header bar, which can be used to slide out the sea
   </template>
 </interface>
 ```
-Implementing the search needs quite a few code changes that we are not going to completely go over here. The central piece of the search implementation is a signal handler that listens for text changes in the search entry.
+实现搜索条需要更改一点我们还没打算完成的代码。搜索实现的核心是一个监听搜索条文字变化的信号句柄。
 
 ```c
 ...
@@ -794,10 +797,11 @@ example_app_window_init (ExampleAppWindow *win)
 
 ([full source](https://git.gnome.org/browse/gtk+/tree/examples/application7/exampleappwin.c))
 
-With the search bar, our application now looks like this:
+加上了搜索条，我们的应用程序现在是这样的：
+
 ![getting-started-app7.png](../images/getting-started-app7.png)
 
-### Adding a side bar
+### 增加侧边栏
 
 As another piece of functionality, we are adding a sidebar, which demonstrates GtkMenuButton, GtkRevealer and GtkListBox.
 
