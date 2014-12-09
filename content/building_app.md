@@ -342,9 +342,9 @@ example_app_window_open (ExampleAppWindow *win,
 
 ### 一个应用菜单
 
-An application menu is shown by GNOME shell at the top of the screen. It is meant to collect infrequently used actions that affect the whole application.
+一个应用程序菜单被GNOME shell在屏幕顶端显示。它用来收集影响整个应用程序的常用动作。
 
-Just like the window template, we specify our application menu in a ui file, and add it as a resource to our binary.
+就像窗口模板，在一个ui file 中我们指定了我们的应用程序菜单，然后作为资源向二进制文件中添加。
 
 ```xml
 <?xml version="1.0"?>
@@ -367,9 +367,9 @@ Just like the window template, we specify our application menu in a ui file, and
 </interface>
 ```
 
-To associate the app menu with the application, we have to call gtk_application_set_app_menu(). Since app menus work by activating GActions, we also have to add a suitable set of actions to our application.
+为了关联应用程序和应用菜单，我们必须调用`gtk_application_set_app_menu()`。y因为应用菜单被活动的GActions激活，所以必须为应用程序增加一个合适的设定。
 
-Both of these tasks are best done in the startup() vfunc, which is guaranteed to be called once for each primary application instance:
+所有这些任务最好在startup()函数中做完，因为startup()函数被保证在每个应用程序实例中只被调用一次。
 
 ```c
 ...
@@ -428,13 +428,13 @@ example_app_class_init (ExampleAppClass *class)
 ```
 ([full source](https://git.gnome.org/browse/gtk+/tree/examples/application4/exampleapp.c))
 
-Our preferences menu item does not do anything yet, but the Quit menu item is fully functional. Note that it can also be activated by the usual Ctrl-Q shortcut. The shortcut was added with gtk_application_set_accels_for_action().
+菜单首选项如今并不能作任何事，但是Quit菜单选项的功能是正常的。**注意**它也可以被快捷键`Ctrl-Q`激活。这个快捷方式已经在`gtk_application_set_accels_for_action()`中被添加。
 
-The application menu looks like this:
+我们的应用菜单如下：
 ![getting-started-app4.png](../images/getting-started-app4.png)
 
 
-### A preference dialog
+### 一个偏好对话框
 
 A typical application will have a some preferences that should be remembered from one run to the next. Even for our simple example application, we may want to change the font that is used for the content.
 
