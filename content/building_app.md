@@ -431,6 +431,7 @@ example_app_class_init (ExampleAppClass *class)
 菜单首选项如今并不能作任何事，但是Quit菜单选项的功能是正常的。**注意**它也可以被快捷键`Ctrl-Q`激活。这个快捷方式已经在`gtk_application_set_accels_for_action()`中被添加。
 
 我们的应用菜单如下：
+
 ![getting-started-app4.png](../images/getting-started-app4.png)
 
 
