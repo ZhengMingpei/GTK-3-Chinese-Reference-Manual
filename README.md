@@ -23,15 +23,15 @@
 		   * [填充窗口](content/building_app.md#填充窗口)
 		   * [打开文件](content/building_app.md#打开文件)
 		   * [一个应用菜单](content/building_app.md#一个应用菜单)
-		   * 一个偏好对话框
-		   * 增加搜索条
-		   * 增加侧边栏
-		   * 属性
-		   * 标题栏
-* 邮件列表和bug报告
-* 常见问题
-* GTK+ 绘图模型
-* GTK+ 输入处理模型
+		   * [一个偏好对话框](content/building_app.md#一个偏好对话框)
+		   * [增加搜索条](content/building_app.md#增加搜索条)
+		   * [增加侧边栏](content/building_app.md#增加侧边栏)
+		   * [属性](content/building_app.md#属性)
+		   * [标题栏](content/building_app.md#标题栏)
+* [邮件列表和bug报告](content/gtk-resources.md)
+* [常见问题](content/gtk-questing-index.md)
+* [GTK+ 绘图模型](content/chap-drawing-model.md)
+* [GTK+ 输入处理模型](content/chap-input-handing.md)
 
 
 ### 参与流程
