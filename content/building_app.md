@@ -236,7 +236,7 @@ example_app_window_class_init (ExampleAppWindowClass *class)
 
 ([full source](https://git.gnome.org/browse/gtk+/tree/examples/application2/exampleappwin.c))
 
-You may have noticed that we used the _from_resource() variant of the function that sets a template. Now we need to use GLib's resource functionality to include the ui file in the binary. This is commonly done by listing all resources in a .gresource.xml file, such as this:
+你也许注意到了，我们在函数中用了变量_from_resource()来设定一个模板。现在我们需要用GLib的资源功能在二进制文件中包含一个ui file。通常是在.gresource.xml中列出所有资源，就像这样：
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -247,22 +247,22 @@ You may have noticed that we used the _from_resource() variant of the function t
 </gresources>
 ```
 
-This file has to be converted into a C source file that will be compiled and linked into the application together with the other source files. To do so, we use the glib-compile-resources utility:
+这个文件必须被转换成一个C 源文件，这样它才能和其他源文件一起被编译链接进应用程序中。因此，我们使用了`glib-complie-resources`：
 
 ```
 glib-compile-resources exampleapp.gresource.xml --target=resources.c --generate-source
 ```
 
-Our application now looks like this:
+如今我们的应用程序就像这样：
 
 ![getting-started-app2.png](../images/getting-started-app2.png)
 
 
 ### 打开文件
 
-In this step, we make our application show the content of all the files that it is given on the commandline.
+在这节，我们使我们的应用程序展示命令行传来的文件的正文。
 
-To this end, we add a private struct to our application window subclass and keep a reference to the GtkStack there. The gtk_widget_class_bind_template_child_private() function arranges things so that after instantiating the template, the stack member of the private struct will point to the widget of the same name from the template.
+在这后面，我们为我们的应用程序的窗口子类增加了一个私有的结构体，结构体内是一个指向GtkStack的指针。`gtk_widget_class_bind_template_child_private()`函数使得在实例化模板后，私有结构体中的stack成员会指向模板中的同名部件。
 
 ```c
 ...
@@ -289,7 +289,7 @@ example_app_window_class_init (ExampleAppWindowClass *class)
 
 ([full source](https://git.gnome.org/browse/gtk+/tree/examples/application3/exampleappwin.c))
 
-Now we revisit the example_app_window_open() function that is called for each commandline argument, and construct a GtkTextView that we then add as a page to the stack:
+现在我们重新看一下在每个命令行参数中都会被调用的`example_app_window_open()`函数，然后构建`GtkTextView`，它在后来的stack中作为一页被添加。
 
 ```c
 ...
@@ -334,13 +334,13 @@ example_app_window_open (ExampleAppWindow *win,
 ```
 ([full source](https://git.gnome.org/browse/gtk+/tree/examples/application3/exampleappwin.c))
 
-Note that we did not have to touch the stack switcher at all. It gets all its information from the stack that it belongs to. Here, we are passing the label to show for each file as the last argument to the gtk_stack_add_titled() function.
+**注意**我们不一定非要接触stack switcher。它从它属于的stack得到了自己所有的信息。在这里，我们传递`gtk_stack_add_titled()`函数的最后一个参数来显示每个文件的标签。
 
-Our application is beginning to take shape:
+我们的程序打开后就像这样：
 
 ![getting-started-app3.png](../images/getting-started-app3.png)
 
-### An application menu
+### 一个应用菜单
 
 An application menu is shown by GNOME shell at the top of the screen. It is meant to collect infrequently used actions that affect the whole application.
 
