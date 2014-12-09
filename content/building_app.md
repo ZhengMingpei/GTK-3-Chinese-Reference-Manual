@@ -236,7 +236,7 @@ example_app_window_class_init (ExampleAppWindowClass *class)
 
 ([full source](https://git.gnome.org/browse/gtk+/tree/examples/application2/exampleappwin.c))
 
-You may have noticed that we used the _from_resource() variant of the function that sets a template. Now we need to use GLib's resource functionality to include the ui file in the binary. This is commonly done by listing all resources in a .gresource.xml file, such as this:
+你也许注意到了，我们在函数中用了变量_from_resource()来设定一个模板。现在我们需要用GLib的资源功能在二进制文件中包含一个ui file。通常是在.gresource.xml中列出所有资源，就像这样：
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -247,22 +247,22 @@ You may have noticed that we used the _from_resource() variant of the function t
 </gresources>
 ```
 
-This file has to be converted into a C source file that will be compiled and linked into the application together with the other source files. To do so, we use the glib-compile-resources utility:
+这个文件必须被转换成一个C 源文件，这样它才能和其他源文件一起被编译链接进应用程序中。因此，我们使用了`glib-complie-resources`：
 
 ```
 glib-compile-resources exampleapp.gresource.xml --target=resources.c --generate-source
 ```
 
-Our application now looks like this:
+如今我们的应用程序就像这样：
 
 ![getting-started-app2.png](../images/getting-started-app2.png)
 
 
 ### 打开文件
 
-In this step, we make our application show the content of all the files that it is given on the commandline.
+在这节，我们使我们的应用程序展示命令行传来的文件的正文。
 
-To this end, we add a private struct to our application window subclass and keep a reference to the GtkStack there. The gtk_widget_class_bind_template_child_private() function arranges things so that after instantiating the template, the stack member of the private struct will point to the widget of the same name from the template.
+在这后面，我们为我们的应用程序的窗口子类增加了一个私有的结构体，结构体内是一个指向GtkStack的指针。`gtk_widget_class_bind_template_child_private()`函数使得在实例化模板后，私有结构体中的stack成员会指向模板中的同名部件。
 
 ```c
 ...
@@ -289,7 +289,7 @@ example_app_window_class_init (ExampleAppWindowClass *class)
 
 ([full source](https://git.gnome.org/browse/gtk+/tree/examples/application3/exampleappwin.c))
 
-Now we revisit the example_app_window_open() function that is called for each commandline argument, and construct a GtkTextView that we then add as a page to the stack:
+现在我们重新看一下在每个命令行参数中都会被调用的`example_app_window_open()`函数，然后构建`GtkTextView`，它在后来的stack中作为一页被添加。
 
 ```c
 ...
@@ -334,17 +334,17 @@ example_app_window_open (ExampleAppWindow *win,
 ```
 ([full source](https://git.gnome.org/browse/gtk+/tree/examples/application3/exampleappwin.c))
 
-Note that we did not have to touch the stack switcher at all. It gets all its information from the stack that it belongs to. Here, we are passing the label to show for each file as the last argument to the gtk_stack_add_titled() function.
+**注意**我们不一定非要接触stack switcher。它从它属于的stack得到了自己所有的信息。在这里，我们传递`gtk_stack_add_titled()`函数的最后一个参数来显示每个文件的标签。
 
-Our application is beginning to take shape:
+我们的程序打开后就像这样：
 
 ![getting-started-app3.png](../images/getting-started-app3.png)
 
-### An application menu
+### 一个应用菜单
 
-An application menu is shown by GNOME shell at the top of the screen. It is meant to collect infrequently used actions that affect the whole application.
+一个应用程序菜单被GNOME shell在屏幕顶端显示。它用来收集影响整个应用程序的常用动作。
 
-Just like the window template, we specify our application menu in a ui file, and add it as a resource to our binary.
+就像窗口模板，在一个ui file 中我们指定了我们的应用程序菜单，然后作为资源向二进制文件中添加。
 
 ```xml
 <?xml version="1.0"?>
@@ -367,9 +367,9 @@ Just like the window template, we specify our application menu in a ui file, and
 </interface>
 ```
 
-To associate the app menu with the application, we have to call gtk_application_set_app_menu(). Since app menus work by activating GActions, we also have to add a suitable set of actions to our application.
+为了关联应用程序和应用菜单，我们必须调用`gtk_application_set_app_menu()`。y因为应用菜单被活动的GActions激活，所以必须为应用程序增加一个合适的设定。
 
-Both of these tasks are best done in the startup() vfunc, which is guaranteed to be called once for each primary application instance:
+所有这些任务最好在startup()函数中做完，因为startup()函数被保证在每个应用程序实例中只被调用一次。
 
 ```c
 ...
@@ -428,13 +428,14 @@ example_app_class_init (ExampleAppClass *class)
 ```
 ([full source](https://git.gnome.org/browse/gtk+/tree/examples/application4/exampleapp.c))
 
-Our preferences menu item does not do anything yet, but the Quit menu item is fully functional. Note that it can also be activated by the usual Ctrl-Q shortcut. The shortcut was added with gtk_application_set_accels_for_action().
+菜单首选项如今并不能作任何事，但是Quit菜单选项的功能是正常的。**注意**它也可以被快捷键`Ctrl-Q`激活。这个快捷方式已经在`gtk_application_set_accels_for_action()`中被添加。
 
-The application menu looks like this:
+我们的应用菜单如下：
+
 ![getting-started-app4.png](../images/getting-started-app4.png)
 
 
-### A preference dialog
+### 一个偏好对话框
 
 A typical application will have a some preferences that should be remembered from one run to the next. Even for our simple example application, we may want to change the font that is used for the content.
 
