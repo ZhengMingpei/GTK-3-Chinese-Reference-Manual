@@ -437,9 +437,10 @@ example_app_class_init (ExampleAppClass *class)
 
 ### 一个偏好对话框
 
-A typical application will have a some preferences that should be remembered from one run to the next. Even for our simple example application, we may want to change the font that is used for the content.
+一个典型的应用程序应该有一些偏好设置，在每次打开时都能被记住。即使是为这个小范例程序，我们也将想改变正文的字体。
 
-We are going to use GSettings to store our preferences. GSettings requires a schema that describes our settings:
+
+我们将用GSettings 来保存偏好设置，GSettings 需要一个描述我们设置的模式。
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -463,9 +464,9 @@ We are going to use GSettings to store our preferences. GSettings requires a sch
   </schema>
 </schemalist>
 ```
-Before we can make use of this schema in our application, we need to compile it into the binary form that GSettings expects. GIO provides macros to do this in autotools-based projects.
+当我们在应用程序中使用这个模式之前，我们需要从GSettings 中将这编译进二进制文件。GIO 提供`macros`来在工程中做这件事。
 
-Next, we need to connect our settings to the widgets that they are supposed to control. One convenient way to do this is to use GSettings bind functionality to bind settings keys to object properties, as we do here for the transition setting.
+接着，我们需要连接settings 和我们的目标部件。一个简便的方法是用GSettings bind 函数绑定设定关键词和目标属性，就像我们这里为转换设置做的。
 
 ```c
 ...
@@ -488,11 +489,11 @@ example_app_window_init (ExampleAppWindow *win)
 ```
 ([full source](https://git.gnome.org/browse/gtk+/tree/examples/application5/exampleappwin.c))
 
-The code to connect the font setting is a little more involved, since there is no simple object property that it corresponds to, so we are not going to go into that here.
+这个连接字体设置的代码有点儿复杂，因为我们没有对应的简单的目标属性，我们本没打算这么做。
 
-At this point, the application will already react if you change one of the settings, e.g. using the gsettings commandline tool. Of course, we expect the application to provide a preference dialog for these. So lets do that now. Our preference dialog will be a subclass of GtkDialog, and we'll use the same techniques that we've already seen: templates, private structs, settings bindings.
+至此，如果我们改变一个设置，程序将会有反应，比如用gsettings 命令行工具。当然，我们希望应用程序提供一个偏好对话框。所以干吧，我们的偏好对话框是GtkDialog 的子类，我们将使用我们已经用过的技术：templates,private structs, settingbindings。
 
-Lets start with the template.
+让我们从模板开始。
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -566,7 +567,8 @@ Lets start with the template.
   </template>
 </interface>
 ```
-Next comes the dialog subclass.
+
+接下来是对话框子类。
 
 ```c
 #include <gtk/gtk.h>
@@ -642,7 +644,7 @@ example_app_prefs_new (ExampleAppWindow *win)
 }
 
 ```
-Now we revisit the preferences_activated() function in our application class, and make it open a new preference dialog.
+现在我们再看`preferences_activated()`函数，使它打开一个偏好对话框。
 
 ```c
 ...
@@ -664,15 +666,16 @@ preferences_activated (GSimpleAction *action,
 ```
 ([full source](https://git.gnome.org/browse/gtk+/tree/examples/application6/exampleapp.c))
 
-After all this work, our application can now show a preference dialog like this:
+完成所有这些工作后，我们的应用程序现在可以像这样显示一个偏好对话框：
+
 
 ![getting-started-app6.png](../images/getting-started-app6.png)
 
-### Adding a search bar
+### 增加搜索条
 
-We continue to flesh out the functionality of our application. For now, we add search. GTK+ supports this with GtkSearchEntry and GtkSearchBar. The search bar is a widget that can slide in from the top to present a search entry.
+我们继续充实我们应用程序的功能。如今，我们添加搜索。GTK+在`GtkSearchEntry`和`Gtksearchbar`中支持这个功能。搜索条是一个可以嵌入顶端来展现搜索输入。
 
-We add a toggle button to the header bar, which can be used to slide out the search bar below the header bar.
+我们在头栏增加一个开关按钮，他可以用来滑出头栏下的搜索条。
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -739,7 +742,7 @@ We add a toggle button to the header bar, which can be used to slide out the sea
   </template>
 </interface>
 ```
-Implementing the search needs quite a few code changes that we are not going to completely go over here. The central piece of the search implementation is a signal handler that listens for text changes in the search entry.
+实现搜索条需要更改一点我们还没打算完成的代码。搜索实现的核心是一个监听搜索条文字变化的信号句柄。
 
 ```c
 ...
@@ -794,12 +797,13 @@ example_app_window_init (ExampleAppWindow *win)
 
 ([full source](https://git.gnome.org/browse/gtk+/tree/examples/application7/exampleappwin.c))
 
-With the search bar, our application now looks like this:
+加上了搜索条，我们的应用程序现在是这样的：
+
 ![getting-started-app7.png](../images/getting-started-app7.png)
 
-### Adding a side bar
+### 增加侧边栏
 
-As another piece of functionality, we are adding a sidebar, which demonstrates GtkMenuButton, GtkRevealer and GtkListBox.
+作为另一个实用的功能，我们增加一个显示`GtkMenuButton`,`GtkRevealer`和`GtkListBox`的侧边条。
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -903,9 +907,9 @@ As another piece of functionality, we are adding a sidebar, which demonstrates G
   </template>
 </interface>
 ```
-The code to populate the sidebar with buttons for the words found in each file is a little too involved to go into here. But we'll look at the code to add the gears menu.
+这些代码将每个文件中相关的词做成按钮显示在侧边条上。但我们将考虑用这些代码去添加一个工具菜单。
 
-As expected by now, the gears menu is specified in a GtkBuilder ui file.
+像我们所希望的，这个工具菜单在一个`GtkBuilder` ui file中被指定。
 
 ```xml
 <?xml version="1.0"?>
@@ -921,7 +925,7 @@ As expected by now, the gears menu is specified in a GtkBuilder ui file.
   </menu>
 </interface>
 ```
-To connect the menuitem to the show-words setting, we use a GAction corresponding to the given GSettings key.
+为了连接菜单项和show-words设置，我们用了`GAction`对应于给定的`GSettings`。
 
 ```c
 ...
@@ -946,18 +950,19 @@ example_app_window_init (ExampleAppWindow *win)
 ```
 ([full source](https://git.gnome.org/browse/gtk+/tree/examples/application8/exampleappwin.c))
 
-What our application looks like now:
+我们的应用程序如今是这样的：
+
 ![getting-started-app8.png](../images/getting-started-app8.png)
 
-### Properties
+### 属性
 
-Widgets and other objects have many useful properties.
+部件和其他的对象有许多有用的属性。
 
-Here we show some ways to use them in new and flexible ways, by wrapping them in actions with GPropertyAction or by binding them with GBinding.
+这里我们展示一些灵活的新方法来使用它们，可以通过`GPropertyAction`包装在action中，也可以用`GBinding`来绑定它们。
 
-To set this up, we add two labels to the header bar in our window template, named lines_label and lines, and bind them to struct members in the private struct, as we've seen a couple of times by now.
+着手干吧，我们在窗口模板头栏增加两个lable，分别为lines_label和lines，然后在一个私有结构体中将它们和结构体成员绑定，就像我们前2次做的一样。
 
-We add a new "Lines" menu item to the gears menu, which triggers the show-lines action:
+我们在工具菜单上增加一个新的Lines菜单项，它负责触发show-lines 动作。
 
 ```xml
 <?xml version="1.0"?>
@@ -977,9 +982,9 @@ We add a new "Lines" menu item to the gears menu, which triggers the show-lines 
   </menu>
 </interface>
 ```
-To make this menu item do something, we create a property action for the visible property of the lines label, and add it to the actions of the window. The effect of this is that the visibility of the label gets toggled every time the action is activated.
+为了使这个菜单项起作用，我们为lines label的可见属性添加了一个属性动作，然后将它添加进了窗口动作。效果就是，每次lable一可见，该动作就被触发。
 
-Since we want both labels to appear and disappear together, we bind the visible property of the lines_label widget to the same property of the lines widget.
+因为我们希望所有的label都能一起显示和消失，我们将lines-label部件的可见属性和lines部件相同属性绑定。
 
 ```c
 ...
@@ -1002,15 +1007,15 @@ example_app_window_init (ExampleAppWindow *win)
 ```
 ([full source](https://git.gnome.org/browse/gtk+/tree/examples/application9/exampleappwin.c))
 
-We also need a function that counts the lines of the currently active tab, and updates the lines label. See the full source if you are interested in the details.
+我们需要一个计算当前活动标签行数的函数，然后更新lines label。如果你对细节感兴趣，请看[全部源代码](https://git.gnome.org/browse/gtk+/tree/examples/application9/exampleappwin.c)。
 
-This brings our example application to this appearance:
+这使我们的范例程序如下所示：
 
 ![getting-started-app9.png](../images/getting-started-app9.png)
 
-### Header bar
+### 标题栏
 
-Our application already uses a GtkHeaderBar, but so far it still gets a 'normal' window titlebar on top of that. This is a bit redundant, and we will now tell GTK+ to use the header bar as replacement for the titlebar. To do so, we move it around to be a direct child of the window, and set its type to be titlebar.
+我们的应用程序已经用了`GtkHeaderBar`，但至今它仍然只在顶端显示一个‘正常’的window titlebar。这有点多余，我们现在要用header bar 来替代titlebar。为了达到目的，我们将header bar移到窗口的直接子成员中，并把它设为titlebar。
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -1132,10 +1137,9 @@ Our application already uses a GtkHeaderBar, but so far it still gets a 'normal'
   </template>
 </interface>
 ```
-A small extra bonus of using a header bar is that we get a fallback application menu for free. Here is how the application now looks, if this fallback is used.
+使用header bar的一个额外的好处是我们免费得到了一个回退项。如果这回退应用了，我们的应用程序将如下显示。
 
 ![getting-started-app10.png](../images/getting-started-app10.png)
 
-If we set up the window icon for our window, the menu button will use that instead of the generic placeholder icon you see here.
+如果我们为窗口设定了图标，那么菜单按钮就是设定好的图标，而不是你现在看到的样子。
 
-Generated by GTK-Doc V1.21.1
