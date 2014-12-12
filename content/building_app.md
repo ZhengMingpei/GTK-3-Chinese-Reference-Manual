@@ -32,11 +32,11 @@ main (int argc, char *argv[])
 }
 ```
 
-所有的应用程序逻辑都在GtkApplicaton的子类中。我们的范例还没有任何有趣的功能。它所做的只是当它没有传递参数而被激活时打开一个窗口和传递了参数被激活时打开给定的文件。  
+所有的应用程序逻辑都在GtkApplicaton的子类中。我们的范例还没有任何有趣的功能。它所做的只是当它没有传递参数而被激活时打开一个窗口，在传递了参数被激活时打开给定的文件。  
 
 为了处理这两种情况，我们重载了activate()vfunc，当应用程序被加载没有命令行参数时它被调用，当应用程序被加载并带有命令行参数时，调用open()vfunc。
 
-想知道更多关于Gapplication入口知识，请查看GIO文档。
+想知道更多关于GApplication入口知识，请查看GIO文档。
 
 ```c
 #include <gtk/gtk.h>
@@ -176,7 +176,7 @@ Exec=@bindir@/exampleapp
 
 在这节中，我们用GtkBuilder 模板结合一个GtkBuilder ui 文件和我们的应用程序窗口类。
 
-我们的简易ui 文件把GtkHeaderBar 放在GtkStack 部件顶端。头栏包括一个显示GtkStack 页面分页的一行的独立部件——GtkStackSwitcher。 
+我们简单的ui 文件把GtkHeaderBar 放在GtkStack 部件顶端。头栏包括一个显示GtkStack 页面分页的一行的独立部件——GtkStackSwitcher。 
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
