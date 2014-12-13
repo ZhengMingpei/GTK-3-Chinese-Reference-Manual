@@ -23,7 +23,7 @@
 		   * [填充窗口](content/building_app.md#填充窗口)--------[源文件目录](example/application2/)
 		   * [打开文件](content/building_app.md#打开文件)--------[源文件目录](example/application3/)
 		   * [一个应用菜单](content/building_app.md#一个应用菜单)------[源文件目录](example/application4/)
-		   * [一个偏好对话框](content/building_app.md#一个偏好对话框)-----[源文件目录](example/application5/)[源文件目录2](example/application6/)
+		   * [一个偏好对话框](content/building_app.md#一个偏好对话框)-----[源文件目录](example/application5/)----[源文件目录2](example/application6/)
 		   * [增加搜索条](content/building_app.md#增加搜索条)-------[源文件目录](example/application7/)
 		   * [增加侧边栏](content/building_app.md#增加侧边栏)-------[源文件目录](example/application8/)
 		   * [属性](content/building_app.md#属性)----------[源文件目录](example/application9/)
