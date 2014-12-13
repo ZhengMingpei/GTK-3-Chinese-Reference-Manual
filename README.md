@@ -21,13 +21,13 @@
        * [构建应用程序](content/building_app.md)
 		   * [一个小应用](content/building_app.md#一个小应用)-------[源文件目录](example/application1/)
 		   * [填充窗口](content/building_app.md#填充窗口)--------[源文件目录](example/application2/)
-		   * [打开文件](content/building_app.md#打开文件)--------[源文件目录]
-		   * [一个应用菜单](content/building_app.md#一个应用菜单)------[源文件目录]
-		   * [一个偏好对话框](content/building_app.md#一个偏好对话框)-----[源文件目录][源文件目录2]
-		   * [增加搜索条](content/building_app.md#增加搜索条)-------[源文件目录]
-		   * [增加侧边栏](content/building_app.md#增加侧边栏)-------[源文件目录]
-		   * [属性](content/building_app.md#属性)----------[源文件目录]
-		   * [标题栏](content/building_app.md#标题栏)---------[源文件目录]
+		   * [打开文件](content/building_app.md#打开文件)--------[源文件目录](example/application3/)
+		   * [一个应用菜单](content/building_app.md#一个应用菜单)------[源文件目录](example/application4/)
+		   * [一个偏好对话框](content/building_app.md#一个偏好对话框)-----[源文件目录](example/application5/)[源文件目录2](example/application6/)
+		   * [增加搜索条](content/building_app.md#增加搜索条)-------[源文件目录](example/application7/)
+		   * [增加侧边栏](content/building_app.md#增加侧边栏)-------[源文件目录](example/application8/)
+		   * [属性](content/building_app.md#属性)----------[源文件目录](example/application9/)
+		   * [标题栏](content/building_app.md#标题栏)---------[源文件目录](example/application10/)
 * [邮件列表和bug报告](content/gtk-resources.md)
 * [常见问题](content/gtk-questing-index.md)
 * [GTK+ 绘图模型](content/chap-drawing-model.md)
