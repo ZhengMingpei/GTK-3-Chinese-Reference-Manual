@@ -1,0 +1,538 @@
+<!DOCTYPE HTML>
+<html lang="en-US" manifest="..\../manifest.appcache">
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <title>增加搜索条 | GTK+ 3 Chinese Reference Manual</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 0.5.2">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    
+    <link rel="next" href="..\../content/building_app/sidebar.html" />
+    
+    
+    <link rel="prev" href="..\../content/building_app/dialog.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="../../gitbook/style.css">
+
+
+        
+    <div class="book"  data-level="1.1.5.6" data-basepath="..\.." data-revision="1418533006251">
+    <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    
+    <a href="https://github.com/null" target="_blank" class="btn pull-left home-bookmark" aria-label="GitHub home"><i class="fa fa-bookmark-o"></i></a>
+    
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    <span id="font-settings-wrapper">
+        <a href="#" class="btn pull-left toggle-font-settings" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="btn-group btn-block">
+        <button id="reduce-font-size" class="btn btn-default">A</button>
+        <button id="enlarge-font-size" class="btn btn-default">A</button>
+    </div>
+
+    <ul class="list-group font-family-list">
+        <li class="list-group-item" data-font="0">Serif</li>
+        <li class="list-group-item" data-font="1">Sans</li>
+    </ul>
+
+    <div class="btn-group btn-group-xs btn-block color-theme-list">
+        <button type="button" class="btn btn-default" id="color-theme-preview-0" data-theme="0">White</button>
+        <button type="button" class="btn btn-default" id="color-theme-preview-1" data-theme="1">Sepia</button>
+        <button type="button" class="btn btn-default" id="color-theme-preview-2" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </span>
+
+    <!-- Actions Right -->
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-spinner fa-spin"></i>
+        <a href="..\../" >GTK+ 3 Chinese Reference Manual</a>
+    </h1>
+</div>
+
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+
+        
+
+        
+
+        
+
+        <li data-level="0" data-path="index.html">
+            <a href="..\../"><i class="fa fa-check"></i> Introduction</a>
+        </li>
+        
+    
+        <li class="chapter " data-level="1" data-path="content/README.html">
+            
+            <a href="..\../content/README.html">
+                <i class="fa fa-check"></i> <b>1.</b> GTK+ 概览
+            </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="content/gtk+.html">
+            
+            <a href="..\../content/gtk+.html">
+                <i class="fa fa-check"></i> <b>1.1.</b> 开始使用GTK+
+            </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="content/basic.html">
+            
+            <a href="..\../content/basic.html">
+                <i class="fa fa-check"></i> <b>1.1.1.</b> 基础
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="content/packing.html">
+            
+            <a href="..\../content/packing.html">
+                <i class="fa fa-check"></i> <b>1.1.2.</b> 填充
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="content/drawing.html">
+            
+            <a href="..\../content/drawing.html">
+                <i class="fa fa-check"></i> <b>1.1.3.</b> 绘制
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" data-path="content/building_ui.html">
+            
+            <a href="..\../content/building_ui.html">
+                <i class="fa fa-check"></i> <b>1.1.4.</b> 构建用户界面
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="content/building_app.html">
+            
+            <a href="..\../content/building_app.html">
+                <i class="fa fa-check"></i> <b>1.1.5.</b> 构建应用程序
+            </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.5.1" data-path="content/building_app/asmallapp.html">
+            
+            <a href="..\../content/building_app/asmallapp.html">
+                <i class="fa fa-check"></i> <b>1.1.5.1.</b> 一个小应用
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.2" data-path="content/building_app/paddingwindow.html">
+            
+            <a href="..\../content/building_app/paddingwindow.html">
+                <i class="fa fa-check"></i> <b>1.1.5.2.</b> 填充窗口
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.3" data-path="content/building_app/openfile.html">
+            
+            <a href="..\../content/building_app/openfile.html">
+                <i class="fa fa-check"></i> <b>1.1.5.3.</b> 打开文件
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.4" data-path="content/building_app/amenu.html">
+            
+            <a href="..\../content/building_app/amenu.html">
+                <i class="fa fa-check"></i> <b>1.1.5.4.</b> 一个应用菜单
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.5" data-path="content/building_app/dialog.html">
+            
+            <a href="..\../content/building_app/dialog.html">
+                <i class="fa fa-check"></i> <b>1.1.5.5.</b> 一个偏好对话框
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.6" data-path="content/building_app/searchbar.html">
+            
+            <a href="..\../content/building_app/searchbar.html">
+                <i class="fa fa-check"></i> <b>1.1.5.6.</b> 增加搜索条
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.7" data-path="content/building_app/sidebar.html">
+            
+            <a href="..\../content/building_app/sidebar.html">
+                <i class="fa fa-check"></i> <b>1.1.5.7.</b> 增加侧边栏
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.8" data-path="content/building_app/properties.html">
+            
+            <a href="..\../content/building_app/properties.html">
+                <i class="fa fa-check"></i> <b>1.1.5.8.</b> 属性
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5.9" data-path="content/building_app/headerbar.html">
+            
+            <a href="..\../content/building_app/headerbar.html">
+                <i class="fa fa-check"></i> <b>1.1.5.9.</b> 标题栏
+            </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="content/gtk-resources.html">
+            
+            <a href="..\../content/gtk-resources.html">
+                <i class="fa fa-check"></i> <b>2.</b> 邮件列表和bug报告
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="content/gtk-questing-index.html">
+            
+            <a href="..\../content/gtk-questing-index.html">
+                <i class="fa fa-check"></i> <b>3.</b> 常见问题
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="content/chap-drawing-model.html">
+            
+            <a href="..\../content/chap-drawing-model.html">
+                <i class="fa fa-check"></i> <b>4.</b> GTK+ 绘图模型
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="content/chap-input-handing.html">
+            
+            <a href="..\../content/chap-input-handing.html">
+                <i class="fa fa-check"></i> <b>5.</b> GTK+ 输入处理模型
+            </a>
+            
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Generated using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="page-wrapper" tabindex="-1">
+                <div class="book-progress">
+    <div class="bar">
+        <div class="inner" style="width: 65%;min-width: 60%;"></div>
+    </div>
+    <div class="chapters">
+    
+        <a href="..\../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
+    
+        <a href="..\../content/README.html" title="GTK+ 概览" class="chapter done new-chapter" data-progress="1" style="left: 5%;"></a>
+    
+        <a href="..\../content/gtk+.html" title="开始使用GTK+" class="chapter done " data-progress="1.1" style="left: 10%;"></a>
+    
+        <a href="..\../content/basic.html" title="基础" class="chapter done " data-progress="1.1.1" style="left: 15%;"></a>
+    
+        <a href="..\../content/packing.html" title="填充" class="chapter done " data-progress="1.1.2" style="left: 20%;"></a>
+    
+        <a href="..\../content/drawing.html" title="绘制" class="chapter done " data-progress="1.1.3" style="left: 25%;"></a>
+    
+        <a href="..\../content/building_ui.html" title="构建用户界面" class="chapter done " data-progress="1.1.4" style="left: 30%;"></a>
+    
+        <a href="..\../content/building_app.html" title="构建应用程序" class="chapter done " data-progress="1.1.5" style="left: 35%;"></a>
+    
+        <a href="..\../content/building_app/asmallapp.html" title="一个小应用" class="chapter done " data-progress="1.1.5.1" style="left: 40%;"></a>
+    
+        <a href="..\../content/building_app/paddingwindow.html" title="填充窗口" class="chapter done " data-progress="1.1.5.2" style="left: 45%;"></a>
+    
+        <a href="..\../content/building_app/openfile.html" title="打开文件" class="chapter done " data-progress="1.1.5.3" style="left: 50%;"></a>
+    
+        <a href="..\../content/building_app/amenu.html" title="一个应用菜单" class="chapter done " data-progress="1.1.5.4" style="left: 55%;"></a>
+    
+        <a href="..\../content/building_app/dialog.html" title="一个偏好对话框" class="chapter done " data-progress="1.1.5.5" style="left: 60%;"></a>
+    
+        <a href="..\../content/building_app/searchbar.html" title="增加搜索条" class="chapter done " data-progress="1.1.5.6" style="left: 65%;"></a>
+    
+        <a href="..\../content/building_app/sidebar.html" title="增加侧边栏" class="chapter  " data-progress="1.1.5.7" style="left: 70%;"></a>
+    
+        <a href="..\../content/building_app/properties.html" title="属性" class="chapter  " data-progress="1.1.5.8" style="left: 75%;"></a>
+    
+        <a href="..\../content/building_app/headerbar.html" title="标题栏" class="chapter  " data-progress="1.1.5.9" style="left: 80%;"></a>
+    
+        <a href="..\../content/gtk-resources.html" title="邮件列表和bug报告" class="chapter  new-chapter" data-progress="2" style="left: 85%;"></a>
+    
+        <a href="..\../content/gtk-questing-index.html" title="常见问题" class="chapter  new-chapter" data-progress="3" style="left: 90%;"></a>
+    
+        <a href="..\../content/chap-drawing-model.html" title="GTK+ 绘图模型" class="chapter  new-chapter" data-progress="4" style="left: 95%;"></a>
+    
+        <a href="..\../content/chap-input-handing.html" title="GTK+ 输入处理模型" class="chapter  new-chapter" data-progress="5" style="left: 100%;"></a>
+    
+    </div>
+</div>
+
+                <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_47">
+                    
+                        <h2 id="-">增加搜索条</h2>
+<p>我们继续充实我们应用程序的功能。如今，我们添加搜索。GTK+在<code>GtkSearchEntry</code>和<code>Gtksearchbar</code>中支持这个功能。搜索条是一个可以嵌入顶端来展现搜索输入。</p>
+<p>我们在头栏增加一个开关按钮，他可以用来滑出头栏下的搜索条。</p>
+<pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">interface</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- interface-requires gtk+ 3.8 --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">template</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"ExampleAppWindow"</span> <span class="hljs-attribute">parent</span>=<span class="hljs-value">"GtkApplicationWindow"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"title"</span> <span class="hljs-attribute">translatable</span>=<span class="hljs-value">"yes"</span>&gt;</span>Example Application<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"default-width"</span>&gt;</span>600<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"default-height"</span>&gt;</span>400<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">child</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">object</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"GtkBox"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"content_box"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"visible"</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"orientation"</span>&gt;</span>vertical<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">child</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">object</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"GtkHeaderBar"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"header"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"visible"</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">child</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"title"</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">object</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"GtkStackSwitcher"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"tabs"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"visible"</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"margin"</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stack"</span>&gt;</span>stack<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
+              <span class="hljs-tag">&lt;/<span class="hljs-title">object</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">child</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">child</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">object</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"GtkToggleButton"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"search"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"visible"</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"sensitive"</span>&gt;</span>False<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">style</span>&gt;</span><span class="css">
+                  &lt;<span class="hljs-tag">class</span> <span class="hljs-tag">name</span>="<span class="hljs-tag">image-button</span>"/&gt;
+                </span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">child</span>&gt;</span>
+                  <span class="hljs-tag">&lt;<span class="hljs-title">object</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"GtkImage"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"search-icon"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"visible"</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"icon-name"</span>&gt;</span>edit-find-symbolic<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"icon-size"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
+                  <span class="hljs-tag">&lt;/<span class="hljs-title">object</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-title">child</span>&gt;</span>
+              <span class="hljs-tag">&lt;/<span class="hljs-title">object</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">packing</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"pack-type"</span>&gt;</span>end<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
+              <span class="hljs-tag">&lt;/<span class="hljs-title">packing</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">child</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-title">object</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">child</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">child</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">object</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"GtkSearchBar"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"searchbar"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"visible"</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">child</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">object</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"GtkSearchEntry"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"searchentry"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">signal</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"search-changed"</span> <span class="hljs-attribute">handler</span>=<span class="hljs-value">"search_text_changed"</span>/&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"visible"</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
+              <span class="hljs-tag">&lt;/<span class="hljs-title">object</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">child</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-title">object</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">child</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">child</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">object</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"GtkStack"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"stack"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">signal</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"notify::visible-child"</span> <span class="hljs-attribute">handler</span>=<span class="hljs-value">"visible_child_changed"</span>/&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"visible"</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-title">object</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">child</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">object</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">child</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">template</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">interface</span>&gt;</span>
+</code></pre>
+<p>实现搜索条需要更改一点我们还没打算完成的代码。搜索实现的核心是一个监听搜索条文字变化的信号句柄。</p>
+<pre><code class="lang-c">...
+
+<span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span>
+search_text_changed (GtkEntry         *entry,
+                     ExampleAppWindow *win)
+{
+  ExampleAppWindowPrivate *priv;
+  <span class="hljs-keyword">const</span> gchar *text;
+  GtkWidget *tab;
+  GtkWidget *view;
+  GtkTextBuffer *buffer;
+  GtkTextIter start, match_start, match_end;
+
+  text = gtk_entry_get_text (entry);
+
+  <span class="hljs-keyword">if</span> (text[<span class="hljs-number">0</span>] == <span class="hljs-string">'\0'</span>)
+    <span class="hljs-keyword">return</span>;
+
+  priv = example_app_window_get_instance_private (win);
+
+  tab = gtk_stack_get_visible_child (GTK_STACK (priv-&gt;<span class="hljs-built_in">stack</span>));
+  view = gtk_bin_get_child (GTK_BIN (tab));
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+
+  <span class="hljs-comment">/* Very simple-minded search implementation */</span>
+  gtk_text_buffer_get_start_iter (buffer, &amp;start);
+  <span class="hljs-keyword">if</span> (gtk_text_iter_forward_search (&amp;start, text, GTK_TEXT_SEARCH_CASE_INSENSITIVE,
+                                    &amp;match_start, &amp;match_end, NULL))
+    {
+      gtk_text_buffer_select_range (buffer, &amp;match_start, &amp;match_end);
+      gtk_text_view_scroll_to_iter (GTK_TEXT_VIEW (view), &amp;match_start,
+                                    <span class="hljs-number">0.0</span>, FALSE, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>);
+    }
+}
+
+<span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span>
+example_app_window_init (ExampleAppWindow *win)
+{
+
+...
+
+  gtk_widget_class_bind_template_callback (GTK_WIDGET_CLASS (<span class="hljs-keyword">class</span>), search_text_changed);
+
+...
+
+}
+
+...
+</code></pre>
+<p>(<a href="https://git.gnome.org/browse/gtk+/tree/examples/application7/exampleappwin.c" target="_blank">full source</a>)</p>
+<p>加上了搜索条，我们的应用程序现在是这样的：</p>
+<p><img src="../../images/getting-started-app7.png" alt="getting-started-app7.png"></p>
+
+                    
+                    </section>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="..\../content/building_app/dialog.html" class="navigation navigation-prev " aria-label="Previous page: 一个偏好对话框"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="..\../content/building_app/sidebar.html" class="navigation navigation-next " aria-label="Next page: 增加侧边栏"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
+<script src="../../gitbook/app.js"></script>
+
+    
+    <script src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
