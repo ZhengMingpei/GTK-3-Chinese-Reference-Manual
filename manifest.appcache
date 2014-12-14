@@ -1,15 +1,28 @@
 CACHE MANIFEST
-# Revision 1418521896209
+# Revision 1418534183418
 
 CACHE:
 index.html
 content/README.html
+content/chap-input-handing.html
+content/building_app/amenu.html
+content/building_app/asmallapp.html
+content/building_app/dialog.html
+content/building_app/headerbar.html
+content/building_app/paddingwindow.html
+content/building_app/openfile.html
+content/building_app/properties.html
+content/building_app/sidebar.html
+content/building_app/searchbar.html
 content/building_app.html
+content/chap-drawing-model.html
 content/building_ui.html
 content/basic.html
-content/drawing.html
 content/gtk+.html
+content/drawing.html
+content/gtk-questing-index.html
 content/packing.html
+content/gtk-resources.html
 gitbook\app.js
 gitbook\fonts\fontawesome\FontAwesome.otf
 gitbook\fonts\fontawesome\fontawesome-webfont.eot
