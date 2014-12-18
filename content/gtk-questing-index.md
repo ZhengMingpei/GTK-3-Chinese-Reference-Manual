@@ -21,7 +21,7 @@ GTK+[网站](www.gtk.org)提供了一些[教程](www.gtk.org/documentation.php)�
 ###1.4
 GTK+中的内存管理如何工作？程序返回时我是否要释放数据？
 
-查看[GObject](https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject)和[GInitiallyUnowned]((https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GInitiallyUnowned)文档。对于GObject特别主义g_object_ref()和g_object_unref()。GInitiallyUnowned是GObject的子类，所以同样注意，特别对于有"floating“状态的（相应文档中有解释）。
+查看[GObject](https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject)和[GInitiallyUnowned](https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GInitiallyUnowned)文档。对于GObject特别主义g_object_ref()和g_object_unref()。GInitiallyUnowned是GObject的子类，所以同样注意，特别对于有"floating“状态的（相应文档中有解释）。
 对于函数返回的strings，如果不应该被释放它们要被声明为"const"。非"const"的strings应该被g_free()释放。Arrays遵从同样的规则。如果你发现一个没被记录的特别是规则，请向[http://bugzilla.gnome.org](http://bugzilla.gnome.org)提交bug。
 ###1.5
 当我在创建部件后立即销毁了它，为什么我的程序还会泄露内存？
