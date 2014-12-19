@@ -96,7 +96,24 @@ GTK+对文本使用Unicode（更确切的说是UTF-8），UTF-8把每个Unicode�
 
 外部来源的文本（比如文件或者用户输入)，在被传递给GTK+前必须被转换为UTF-8。下面的例子将一个ISO-8859-1编码的文本内容写出到标准输出：
 ```c
+gchar *text, *utf8_text;
+gsize length;
+GError *error = NULL;
 
+if (g_file_get_contents (filename, &text, &length, NULL))
+  {
+     utf8_text = g_convert (text, length, "UTF-8", "ISO-8859-1",
+                            NULL, NULL, &error);
+     if (error != NULL)
+       {
+         fprintf ("Couldn't convert file %s to UTF-8\n", filename);
+         g_error_free (error);
+       }
+     else
+       g_print (utf8_text);
+  }
+else
+  fprintf (stderr, "Unable to read file %s\n", filename);
 ```
 对于源码中的字符串，这里有几个对待non-ASCII内容的方案：
 + 直接用UTF-8
@@ -105,7 +122,11 @@ GTK+对文本使用Unicode（更确切的说是UTF-8），UTF-8把每个Unicode�
 
 这里有一个范例显示了三种使用版权标志&copy 的方法，该标志有Unicode和ISO-8859-1码值169和在UTF-8中被替代为194,169两个字节，或者作为字符串的"\302\251"。
 ```c
-
+g_print ("direct UTF-8: ©");
+g_print ("escaped UTF-8: \302\251");
+text = g_convert ("runtime conversion: ©", -1, "ISO-8859-1", "UTF-8", NULL, NULL, NULL);
+g_print(text);
+g_free (text);
 ```
 
 如果你使用gettext()本地化你的应用程序，你必须调用bind_textdomain_codeset()来确定被翻译字符串以UTF-8返回。
@@ -142,19 +163,53 @@ gdk_window_set_events (gdk_window,
 
 绘制文字，你可以使用Pango layout和pango_cairo_show_layout()。
 ```c
-
+layout = gtk_widget_create_pango_layout (widget, text);
+fontdesc = pango_font_description_from_string ("Luxi Mono 12");
+pango_layout_set_font_description (layout, fontdesc);
+pango_cairo_show_layout (cr, layout);
+pango_font_description_free (fontdesc);
+g_object_unref (layout);
 ```
 ###1.13
 我该如何测量一段文字的大小？
 
 为了掌握一段文字的大小，你可以使用Pango layout和pango_layout_get_pixel_size()，向下面这样使用代码：
 ```c
-
+layout = gtk_widget_create_pango_layout (widget, text);
+fontdesc = pango_font_description_from_string ("Luxi Mono 12");
+pango_layout_set_font_description (layout, fontdesc);
+pango_layout_get_pixel_size (layout, &width, &height);
+pango_font_description_free (fontdesc);
+g_object_unref (layout);
 ```
 ###1.14
+为什么当我用GTK_TYPE_BLAH 宏时，类型没注册？
+
+GTK_TYPE_BLAH 宏被定义就像调用 gtk_lah_get_type()，_get_type()函数被描述为当它的值为被使用时允许编译器优化调用（call away）的G_GUNC_CONST。
+
+这个问题的通常应变方法是在一个易变变量里储存结果，它使编译器优化调用。
+```c
+volatile GType dummy = GTK_TYPE_BLAH;
+```
+
 ###1.15
+我该如何创建一个透明的顶层窗口？
+
+使一个窗体透明需要用一个支持透明的视觉资料。它通过使用gdk_screen_get_rgba_visaul()得到屏幕的RGBA视频资料并且将它设置在窗体上。**注意**如果屏幕不支持透明窗口gdk_screen_get_rgba_visaul()会返回NULL，你应该退回到gdk_screen_get_rgba_visaul()。另外，**注意**从一个屏幕移到另一个屏幕，它会改变，所以不管什么时候窗体被移动到另一个窗体它需要被重复。
+```c
+GdkVisual *visual;
+
+visual = gdk_screen_get_rgba_visual (screen);
+if (visual == NULL)
+	visual = gdk_screen_get_system_visual (screen);
+gtk_widget_set_visual (GTK_WIDGET (window), visual);
+```
+简单的使用cairos RGBA绘制属性来填充窗体的alpha通道。
+
+**注意**一个RGBA视觉资料的出现并不保证窗体会透明出现在屏幕上。在X11上，它需要一个正在运行的复合管理(compositing manager)。参见gtk_widget_is_composited()寻找alpha通道是否被支持。 
 ##### 我该用哪个部件……
 ###2.1
+
 ###2.2
 ###2.3
 ###2.4
