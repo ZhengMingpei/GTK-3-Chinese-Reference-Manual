@@ -231,6 +231,15 @@ gtk_widget_set_visual (GTK_WIDGET (window), visual);
 ###5.5
 ##### GTK+中使用cairo
 ###6.1
-###6.2
-###6.3
+我该如何在GTK+应用程序中使用cairo来绘制？
 
+"`draw`"信号接受一个准备使用的cairo上下文作为你应该使用的参数。
+GTK+中所有的drawing 在draw处理函数中完成，GTK+为双缓冲drawing 创建了一个临时像素图。用`gtk_widget_set_double_buffered ()`可以容易的关闭双缓冲，但这并不合适，因为会造成一些闪烁。
+###6.2
+我可以通过使用cairo中的Glitz或者GL来提升程序的表现么？
+
+不能。GDK X11后端使用cairo X 后端（其他GDK后端使用它们各自的原生cairo后端）。GTK+开发者相信优化cairo X 后端和使用的X server中的相关代码路径是提升GDK drawing表现最棒的方法（大部分是Render扩展）。
+###6.3
+我可以用cairo在GdkPixbuf上绘制么？
+
+不能.至少现在不行。cairo image surface 不支持GdkPixbuf使用的像素格式。
