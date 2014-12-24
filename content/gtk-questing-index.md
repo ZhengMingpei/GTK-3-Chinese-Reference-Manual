@@ -209,10 +209,23 @@ gtk_widget_set_visual (GTK_WIDGET (window), visual);
 **注意**一个RGBA视觉资料的出现并不保证窗体会透明出现在屏幕上。在X11上，它需要一个正在运行的复合管理(compositing manager)。参见gtk_widget_is_composited()寻找alpha通道是否被支持。 
 ##### 我该用哪个部件……
 ###2.1
+对于列表和树？
 
+参看[tree widget overview](https://developer.gnome.org/gtk3/3.14/TreeWidget.html)——你应该使用[GtkTreeView](https://developer.gnome.org/gtk3/3.14/GtkTreeView.html)。（列表是个没有分支的树，所以树部件对于列表同样有用）。
 ###2.2
+对于多行文本显示和编辑？
+
+参看[text widget overview](https://developer.gnome.org/gtk3/3.14/TextWidget.html)，你应该使用[GtkTextView](https://developer.gnome.org/gtk3/3.14/GtkTextView.html)。
+
+如果你只有少量的文本，`GtkLabel`当然更合适。可以用`gtk_label_set_selectable()`来使它可选。对于单行文本输入，见[GtkEntry](https://developer.gnome.org/gtk3/3.14/GtkEntry)。
 ###2.3
+为了显示一张图像或者动画？
+
+`GtkImage`仅能显示GTK+能理解的格式的图像。如果你需要做更复杂的事，比如在图像上绘制文本或者图形，可以用`GtkDrawingArea`。
 ###2.4
+对于呈现一个互斥选项的集合，在窗口哪里用`combo box`？
+
+对于这种情况，建议用`GtkComboBox`部件。这个部件看起来像combo box或current option menu，取决于当前主题。如果你需要一个可编辑文本，用`has-entry`属性。
 ##### GtkWidget
 ###3.1
 ###3.2
