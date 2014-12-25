@@ -209,10 +209,23 @@ gtk_widget_set_visual (GTK_WIDGET (window), visual);
 **注意**一个RGBA视觉资料的出现并不保证窗体会透明出现在屏幕上。在X11上，它需要一个正在运行的复合管理(compositing manager)。参见gtk_widget_is_composited()寻找alpha通道是否被支持。 
 ##### 我该用哪个部件……
 ###2.1
+对于列表和树？
 
+参看[tree widget overview](https://developer.gnome.org/gtk3/3.14/TreeWidget.html)——你应该使用[GtkTreeView](https://developer.gnome.org/gtk3/3.14/GtkTreeView.html)。（列表是个没有分支的树，所以树部件对于列表同样有用）。
 ###2.2
+对于多行文本显示和编辑？
+
+参看[text widget overview](https://developer.gnome.org/gtk3/3.14/TextWidget.html)，你应该使用[GtkTextView](https://developer.gnome.org/gtk3/3.14/GtkTextView.html)。
+
+如果你只有少量的文本，`GtkLabel`当然更合适。可以用`gtk_label_set_selectable()`来使它可选。对于单行文本输入，见[GtkEntry](https://developer.gnome.org/gtk3/3.14/GtkEntry)。
 ###2.3
+为了显示一张图像或者动画？
+
+`GtkImage`仅能显示GTK+能理解的格式的图像。如果你需要做更复杂的事，比如在图像上绘制文本或者图形，可以用`GtkDrawingArea`。
 ###2.4
+对于呈现一个互斥选项的集合，在窗口哪里用`combo box`？
+
+对于这种情况，建议用`GtkComboBox`部件。这个部件看起来像combo box或current option menu，取决于当前主题。如果你需要一个可编辑文本，用`has-entry`属性。
 ##### GtkWidget
 ###3.1
 ###3.2
@@ -231,6 +244,15 @@ gtk_widget_set_visual (GTK_WIDGET (window), visual);
 ###5.5
 ##### GTK+中使用cairo
 ###6.1
-###6.2
-###6.3
+我该如何在GTK+应用程序中使用cairo来绘制？
 
+"`draw`"信号接受一个准备使用的cairo上下文作为你应该使用的参数。
+GTK+中所有的drawing 在draw处理函数中完成，GTK+为双缓冲drawing 创建了一个临时像素图。用`gtk_widget_set_double_buffered ()`可以容易的关闭双缓冲，但这并不合适，因为会造成一些闪烁。
+###6.2
+我可以通过使用cairo中的Glitz或者GL来提升程序的表现么？
+
+不能。GDK X11后端使用cairo X 后端（其他GDK后端使用它们各自的原生cairo后端）。GTK+开发者相信优化cairo X 后端和使用的X server中的相关代码路径是提升GDK drawing表现最棒的方法（大部分是Render扩展）。
+###6.3
+我可以用cairo在GdkPixbuf上绘制么？
+
+不能.至少现在不行。cairo image surface 不支持GdkPixbuf使用的像素格式。
