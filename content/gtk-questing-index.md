@@ -6,25 +6,25 @@
 
 ##### 常规
 ###1.1
-我如何在GTK+上起步？
+**我如何在GTK+上起步？**
 
 GTK+[网站](www.gtk.org)提供了一些[教程](www.gtk.org/documentation.php)和其他文档（大部分是关于GTK+ 2.x的，但大部分依然可用）。更多的从文本资源到在线书籍可以在[GNOME developer's site](https:/developer.gnome.org)中找到。在学习这些材料后，你应该准备回到这个索引来了解细节。
 ###1.2
-我可以在哪里得到GTK+的帮助，提交bug报告或者制作一个特性请求？
+**我可以在哪里得到GTK+的帮助，提交bug报告或者制作一个特性请求？**
 
 参阅[此文档顶部](gtk-resources.md)
 ###1.3
-我如何从一个GTK+版本迁移到另一个？
+**我如何从一个GTK+版本迁移到另一个？**
 
 参阅[Migrating from GTK+2.x to GTK+ 3](https://developer.gnome.org/gtk3/3.14/gtk-migrating-2-to-3.html)。你也许能在这个文档里得到关于某些部件和函数的有用信息。
 如果你有一个手册里所没涵盖的问题，请在邮件列表上提问然后对于文档在[提交一个bug报告](https://bugzilla.gnome.org)。
 ###1.4
-GTK+中的内存管理如何工作？程序返回时我是否要释放数据？
+**GTK+中的内存管理如何工作？程序返回时我是否要释放数据？**
 
 查看[GObject](https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject)和[GInitiallyUnowned](https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GInitiallyUnowned)文档。对于GObject特别主义g_object_ref()和g_object_unref()。GInitiallyUnowned是GObject的子类，所以同样注意，特别对于有"floating“状态的（相应文档中有解释）。
 对于函数返回的strings，如果不应该被释放它们要被声明为"const"。非"const"的strings应该被g_free()释放。Arrays遵从同样的规则。如果你发现一个没被记录的特别是规则，请向[http://bugzilla.gnome.org](http://bugzilla.gnome.org)提交bug。
 ###1.5
-当我在创建部件后立即销毁了它，为什么我的程序还会泄露内存？
+**当我在创建部件后立即销毁了它，为什么我的程序还会泄露内存？**
 
 如果GtkFoo 不是个顶层窗体，然后
 ```c
@@ -45,11 +45,11 @@ g_object_unref (foo);
 ```
 当你立即向容器添加一个部件，它安排假设一个首次浮动引用所以你不必担心引用计数……只要调用`gtk_widget_destroy()`丢弃该部件即可。
 ###1.6
-我该如何在GTK+中使用线程？
+**我该如何在GTK+中使用线程？**
 
 这在GDK线程文档中有说明。也可参看[GThread](https://developer.gnome.org/glib/unstable/glib-Threads.html)文档的便携线程原型。
 ###1.7
-我该如何国际化一个GTK+程序？
+**我该如何国际化一个GTK+程序？**
 
 大多数人使用[GNU gettext](www.gnu.org/software/gettext/)，它在安装GLib时被要求。在一个已安装gettext的UNIX或者Linux系统，键入info gettext阅读文档。
 
@@ -85,7 +85,7 @@ make_widgets (void)
 #define _(x) dgettext (GETTEXT_PACKAGE, x)
 ```
 ###1.8
-我该如何在GTK+程序中使用noo_ASCII字符？
+**我该如何在GTK+程序中使用noo_ASCII字符？**
 
 GTK+对文本使用Unicode（更确切的说是UTF-8），UTF-8把每个Unicode值译成1到6个字节，而且有一些能使在C程序中使用Unicode文本是个不错选择的良好特性：
 + ASCII 字符被译为相近的ASCII码值
@@ -131,7 +131,7 @@ g_free (text);
 
 如果你使用gettext()本地化你的应用程序，你必须调用bind_textdomain_codeset()来确定被翻译字符串以UTF-8返回。
 ###1.9
-我该如何在GTK+中使用C++？
+**我该如何在GTK+中使用C++？**
 
 有两个方法来实现它。GTK+头文件使用了C的子集它也兼容C++，所以你可以在C++程序中使用正常的GTK+ API。另外，你可以使用一个"C++版本"比如提供原生C++ API的[gtkmm](gtkmm.sourceforge.net)。
 
@@ -149,17 +149,17 @@ gdk_window_set_events (gdk_window,
 ```
 然而，很少有函数需要这个。
 ###1.10
-我该如何在GTK+中使用其他non_C languages？
+**我该如何在GTK+中使用其他non_C languages？**
 
 参看[list of language bindings](www.gtk.org/language-bindings.php)和[http://www.gtk.org](http://www.gtk.org)。
 ###1.11
-我该如何从从文件中加载一副图片或者动画？
+**我该如何从从文件中加载一副图片或者动画？**
 
 用gtk_image_new_from_file()来将一个图片文件直接载入显示部件。用gdk_pixbuf_new_from_file()载入另外目的的图片。用gdk_pixbuf_animation_new_from_file()载入动画。gdk_pixbuf_animation_new_from_file也可以载入非动画图片，将它与gdk_pixbuf_animation_is_static_image()结合使用可以载如未知类型文件。
 
 用GdkPixbufLoader异步载入一个图片或者动画文件（非堵塞）。
 ###1.12
-我该如何绘制文字？
+**我该如何绘制文字？**
 
 绘制文字，你可以使用Pango layout和pango_cairo_show_layout()。
 ```c
@@ -171,7 +171,7 @@ pango_font_description_free (fontdesc);
 g_object_unref (layout);
 ```
 ###1.13
-我该如何测量一段文字的大小？
+**我该如何测量一段文字的大小？**
 
 为了掌握一段文字的大小，你可以使用Pango layout和pango_layout_get_pixel_size()，向下面这样使用代码：
 ```c
@@ -183,7 +183,7 @@ pango_font_description_free (fontdesc);
 g_object_unref (layout);
 ```
 ###1.14
-为什么当我用GTK_TYPE_BLAH 宏时，类型没注册？
+**为什么当我用GTK_TYPE_BLAH 宏时，类型没注册？**
 
 GTK_TYPE_BLAH 宏被定义就像调用 gtk_lah_get_type()，_get_type()函数被描述为当它的值为被使用时允许编译器优化调用（call away）的G_GUNC_CONST。
 
@@ -193,7 +193,7 @@ volatile GType dummy = GTK_TYPE_BLAH;
 ```
 
 ###1.15
-我该如何创建一个透明的顶层窗口？
+**我该如何创建一个透明的顶层窗口？**
 
 使一个窗体透明需要用一个支持透明的视觉资料。它通过使用gdk_screen_get_rgba_visaul()得到屏幕的RGBA视频资料并且将它设置在窗体上。**注意**如果屏幕不支持透明窗口gdk_screen_get_rgba_visaul()会返回NULL，你应该退回到gdk_screen_get_rgba_visaul()。另外，**注意**从一个屏幕移到另一个屏幕，它会改变，所以不管什么时候窗体被移动到另一个窗体它需要被重复。
 ```c
@@ -209,28 +209,60 @@ gtk_widget_set_visual (GTK_WIDGET (window), visual);
 **注意**一个RGBA视觉资料的出现并不保证窗体会透明出现在屏幕上。在X11上，它需要一个正在运行的复合管理(compositing manager)。参见gtk_widget_is_composited()寻找alpha通道是否被支持。 
 ##### 我该用哪个部件……
 ###2.1
-对于列表和树？
+**对于列表和树？**
 
 参看[tree widget overview](https://developer.gnome.org/gtk3/3.14/TreeWidget.html)——你应该使用[GtkTreeView](https://developer.gnome.org/gtk3/3.14/GtkTreeView.html)。（列表是个没有分支的树，所以树部件对于列表同样有用）。
 ###2.2
-对于多行文本显示和编辑？
+**对于多行文本显示和编辑？**
 
 参看[text widget overview](https://developer.gnome.org/gtk3/3.14/TextWidget.html)，你应该使用[GtkTextView](https://developer.gnome.org/gtk3/3.14/GtkTextView.html)。
 
 如果你只有少量的文本，`GtkLabel`当然更合适。可以用`gtk_label_set_selectable()`来使它可选。对于单行文本输入，见[GtkEntry](https://developer.gnome.org/gtk3/3.14/GtkEntry)。
 ###2.3
-为了显示一张图像或者动画？
+**为了显示一张图像或者动画？**
 
 `GtkImage`仅能显示GTK+能理解的格式的图像。如果你需要做更复杂的事，比如在图像上绘制文本或者图形，可以用`GtkDrawingArea`。
 ###2.4
-对于呈现一个互斥选项的集合，在窗口哪里用`combo box`？
+**对于呈现一个互斥选项的集合，在窗口哪里用`combo box`？**
 
 对于这种情况，建议用`GtkComboBox`部件。这个部件看起来像combo box或current option menu，取决于当前主题。如果你需要一个可编辑文本，用`has-entry`属性。
 ##### GtkWidget
 ###3.1
-###3.2
-###3.3
+**我如何改变部件的颜色？**
 
+参看`gtk_widget_override_color()`和`gtk_widget_override_background_color()`。你可以通过安装一个自定义style provider来改变部件外观。参看`gtk_style_context_and_provider()。`
+
+改变部件的背景颜色比如没有背景的`GtkLabel`，可以把他们放在`GtkEventBox`中然后设置event box的背景。
+###3.2
+**我该如何改变部件的字体?**
+
+这有几个可行的答案，它们取决于你具体想实现的。一个选择是`gtk_widget_override_font()`。
+
+```c
+PangofontDesc *font_desc = pango_font_description_new ();
+pango_font_description_set_size (font_desc, 40);
+gtk_widget_override_font (widget, font);
+pango_font_description_free (font_desc);
+```
+
+如果你想使文本更大，可以使用`gtk_label_set_markup()`：
+
+```c
+gtk_label_set_markup (label, "<big>big text</big>");
+```
+
+它更适合许多应用程序，因为它对于用户字体尺寸选择是个相对的尺寸，参看`g_markup_escape_text()`，如果你想灵活的构建。
+你也可以用以下方法来改变部件字体
+```
+.my-widget-class {
+	font: Sans 30;
+}
+```
+在CSS文件中，通过`gtk_css_provider_load_from_file()`加载它，用`gtk_style_context_add_provider_for_screen()`添加provider。用`gtk_style_context_add_class`在`GtkStyleContext`设定style class，可以将style信息和你的控件联系在一起。这个方法的优点是你可以重新覆盖你选择的字体。参见`GtkStyleContext`了解更多。
+###3.3
+**我该如何禁用一个部件？**
+
+在GTK+中，一个失效部件被称做"insensitive"参看`gtk_widget_set_sentitive()`。
 ##### GtkTextView
 ###4.1
 ###4.2
@@ -244,15 +276,15 @@ gtk_widget_set_visual (GTK_WIDGET (window), visual);
 ###5.5
 ##### GTK+中使用cairo
 ###6.1
-我该如何在GTK+应用程序中使用cairo来绘制？
+**我该如何在GTK+应用程序中使用cairo来绘制？**
 
 "`draw`"信号接受一个准备使用的cairo上下文作为你应该使用的参数。
 GTK+中所有的drawing 在draw处理函数中完成，GTK+为双缓冲drawing 创建了一个临时像素图。用`gtk_widget_set_double_buffered ()`可以容易的关闭双缓冲，但这并不合适，因为会造成一些闪烁。
 ###6.2
-我可以通过使用cairo中的Glitz或者GL来提升程序的表现么？
+**我可以通过使用cairo中的Glitz或者GL来提升程序的表现么？**
 
 不能。GDK X11后端使用cairo X 后端（其他GDK后端使用它们各自的原生cairo后端）。GTK+开发者相信优化cairo X 后端和使用的X server中的相关代码路径是提升GDK drawing表现最棒的方法（大部分是Render扩展）。
 ###6.3
-我可以用cairo在GdkPixbuf上绘制么？
+**我可以用cairo在GdkPixbuf上绘制么？**
 
 不能.至少现在不行。cairo image surface 不支持GdkPixbuf使用的像素格式。
