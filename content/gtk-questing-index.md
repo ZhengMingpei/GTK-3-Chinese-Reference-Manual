@@ -265,14 +265,103 @@ gtk_label_set_markup (label, "<big>big text</big>");
 在GTK+中，一个失效部件被称做"insensitive"参看`gtk_widget_set_sentitive()`。
 ##### GtkTextView
 ###4.1
-###4.2
-###4.3
+**我该如何得到输入文本的内容并将它作为string？**
 
+参看`gtk_text_buffer_get_bounds()`和`gtk_text_buffer_get_text()`或`gtk_text_iter_get_text()`
+
+```c
+GtkTextIter start, end;
+GtkTextBuffer *buffer;
+char *text;
+
+buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view));
+gtk_text_buffer_get_bounds (buffer, &start, &end);
+text = gtk_text_iter_get_text (&start, &end);
+/*use text*/
+g_free (text);
+```
+###4.2
+**我该如何使一个文本部件完全用某种字体显示它的内容？**
+
+如果你使用`gtk_text_buffer_insert_with_tags()`来添加选择字体的tags，输入文本会有想要的表现，但是在tag块前后的用户输入文本会以默认style显示。
+为保证所有文本都有想要的表现，用`gtk_widget_override_font()`来改变部件的默认字体。
+###4.3
+**我该如何是text view自动滚动到buffer最后？**
+
+一个使text view自动滚到到尾部的好方法是在buffer最后安排一个mark，并且给它一个right gravity。gravity可以影响在mark上输入的文本，使其保持在尾部。
+为了确保buffer尾部可见，在输入新文本后用`gtk_text_view_scroll_to_mark()`滚动到mark。
 ##### GtkTreeView
 ###5.1
 ###5.2
 ###5.3
 ###5.4
+
+```c
+enum
+{
+  DOUBLE_COLUMN,
+  N_COLUMNS
+};
+
+GtkListStore *mycolumns;
+GtkTreeView *treeview;
+
+void
+my_cell_double_to_text (GtkTreeViewColumn *tree_column,
+                    GtkCellRenderer   *cell,
+                        GtkTreeModel      *tree_model,
+                    GtkTreeIter       *iter,
+                        gpointer           data)
+{
+  GtkCellRendererText *cell_text = (GtkCellRendererText *)cell;
+  gdouble d;
+  gchar *text;
+
+  /* Get the double value from the model. */
+  gtk_tree_model_get (tree_model, iter, (gint)data, &d, -1);
+  /* Now we can format the value ourselves. */
+  text = g_strdup_printf ("%.2f", d);
+  g_object_set (cell, "text", text, NULL);
+  g_free (text);
+}
+
+void
+set_up_new_columns (GtkTreeView *myview)
+{
+  GtkCellRendererText *renderer;
+  GtkTreeViewColumn *column;
+  GtkListStore *mycolumns;
+
+  /* Create the data model and associate it with the given TreeView */
+  mycolumns = gtk_list_store_new (N_COLUMNS, G_TYPE_DOUBLE);
+  gtk_tree_view_set_model (myview, GTK_TREE_MODEL (mycolumns));
+
+  /* Create a GtkCellRendererText */
+  renderer = gtk_cell_renderer_text_new ();
+
+  /* Create a new column that has a title ("Example column"),
+   * uses the above created renderer that will render the double
+   * value into text from the associated model's rows.
+   */
+  column = gtk_tree_view_column_new ();
+  gtk_tree_view_column_set_title  (column, "Example column");
+  renderer = gtk_cell_renderer_text_new ();
+  gtk_tree_view_column_pack_start (column, renderer, TRUE);
+
+  /* Append the new column after the GtkTreeView's previous columns. */
+  gtk_tree_view_append_column (GTK_TREE_VIEW (myview), column);
+  /* Since we created the column by hand, we can set it up for our
+   * needs, e.g. set its minimum and maximum width, etc.
+   */
+  /* Set up a custom function that will be called when the column content
+   * is rendered. We use the func_data pointer as an index into our
+   * model. This is convenient when using multi column lists.
+   */
+  gtk_tree_view_column_set_cell_data_func (column, renderer,
+                                       my_cell_double_to_text,
+                                           (gpointer)DOUBLE_COLUMN, NULL);
+}
+```
 ###5.5
 ##### GTK+中使用cairo
 ###6.1
