@@ -292,9 +292,22 @@ g_free (text);
 为了确保buffer尾部可见，在输入新文本后用`gtk_text_view_scroll_to_mark()`滚动到mark。
 ##### GtkTreeView
 ###5.1
+**我该如何将一些数据和tree的某一行联系起来？**
+
+记住，`GtkTreeModel`的列不一定得显示出来。所以你可以把非用户可见数据像其他数据一样放在model里，通过`gtk_tree_modle_get()`取回它，参看[tree widget overview](https://developer.gnome.org/gtk3/3.14/TreeWidget.html)
 ###5.2
+**我该如何把图片和文本放进同一列？**
+
+你可以用`gtk_tree_view_column_pack_start`或`gtk_tree_view_column_pack_end`将不止一个`GtkCellRenderer`放进单个`GtkTreeViewColumn`。如此便能把一个`GtkCellRendererPixbuf`和一个`GtkCellRendererText`放入一列。
 ###5.3
+**我能用`Gtk_list_store_set()`和`gtk_tree_store_set()`轻松的将数据放在`GtkTreeStore`/`GtkListStore`上，但无法读回？**
+
+`GtkTreeStore`和`GtkListStore`都实现`GtkTreeModel`接口。必然地，你可以使用这个接口实现的任何函数。使用`gtk_tree_model_get()`读回数据是个好办法。
 ###5.4
+**我该如何改变由`GtkTreeView`定义的行列数？**
+
+用`gtk_tree_view_insert_column_with_data_func()`或`gtk_tree_column_set_cell_data_func()`然后自己做从number到string的转换（比如`g_strdup_printf()`）。
+下面的例子显示了这个方法：
 
 ```c
 enum
@@ -363,6 +376,9 @@ set_up_new_columns (GtkTreeView *myview)
 }
 ```
 ###5.5
+**我该如何隐藏我tree view里的expander arrows？**
+
+设置tree view这哦姑娘的expander-column属性可以隐藏列。参看`gtk_tree_view_set_expander_column()`和`gtk_tree_view_column_set_visible()`。
 ##### GTK+中使用cairo
 ###6.1
 **我该如何在GTK+应用程序中使用cairo来绘制？**
