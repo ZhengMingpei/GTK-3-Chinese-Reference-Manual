@@ -3,7 +3,7 @@
 
 >受[ The Swift Programming Language 中文版项目](https://github.com/numbbbbb/the-swift-programming-language-in-chinese)启发，决定也用[GitBook](https://www.gitbook.io/)完成这个翻译项目。请记住本中文手册的在线查看网址是[这里](http://zhengmingpei.github.io/GTK-3-Chinese-Reference-Manual/)。
 
->如果你对这个项目感兴趣，可以帮助完成这个项目,参与方式及详情见[项目主页](https://github.com/ZhengMingpei/GTK-3-Chinese-Reference-Manual)，目前的参与者已经有[ZhengMingpei](https://github.com/ZhengMingpei) 和[truehyp](https://github.com/truehyp)两人，本文最后更新于 2014/12/27 。
+>如果你对这个项目感兴趣，可以帮助完成这个项目,参与方式及详情见[项目主页](https://github.com/ZhengMingpei/GTK-3-Chinese-Reference-Manual)，目前的参与者已经有[ZhengMingpei](https://github.com/ZhengMingpei) 和[truehyp](https://github.com/truehyp)两人，本文最后更新于 2015/01/21。
 
 
 # GTK+ 3 Chinese Reference Manual
@@ -32,7 +32,7 @@
 * [常见问题](content/gtk-questing-index.md)
 * [GTK+ 绘图模型](content/chap-drawing-model.md)
 * [GTK+ 输入处理模型](content/chap-input-handing.md)
-
+* [GTK+ 小程序范例](content/AppExample/index.md)
 
 ### 参与流程
 

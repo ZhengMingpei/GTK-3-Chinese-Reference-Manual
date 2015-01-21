@@ -20,4 +20,5 @@
 * [常见问题](content/gtk-questing-index.md)
 * [GTK+ 绘图模型](content/chap-drawing-model.md)
 * [GTK+ 输入处理模型](content/chap-input-handing.md)
+* [GTK+ 小程序范例](content/AppExample/index.md)
 
