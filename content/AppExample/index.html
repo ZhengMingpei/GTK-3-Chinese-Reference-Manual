@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>增加搜索条 | GTK+ 3 Chinese Reference Manual</title>
+        <title>GTK+ 小程序范例 | GTK+ 3 Chinese Reference Manual</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.4.2">
@@ -19,10 +19,8 @@
         
     
     
-    <link rel="next" href="../../content/building_app/sidebar.html" />
     
-    
-    <link rel="prev" href="../../content/building_app/dialog.html" />
+    <link rel="prev" href="../../content/chap-input-handing.html" />
     
 
         
@@ -34,7 +32,7 @@
 
 
         
-    <div class="book" data-level="1.1.5.6" data-basepath="../.." data-revision="1421832919627">
+    <div class="book" data-level="6" data-basepath="../.." data-revision="1421832919627">
     
 
 <div class="book-summary">
@@ -261,7 +259,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="1.1.5.6" data-path="content/building_app/searchbar.html">
+        <li class="chapter " data-level="1.1.5.6" data-path="content/building_app/searchbar.html">
             
                 
                     <a href="../../content/building_app/searchbar.html">
@@ -404,7 +402,7 @@
         </li>
     
         
-        <li class="chapter " data-level="6" data-path="content/AppExample/index.html">
+        <li class="chapter active" data-level="6" data-path="content/AppExample/index.html">
             
                 
                     <a href="../../content/AppExample/index.html">
@@ -508,128 +506,10 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_12">
+                    <section class="normal" id="section-gitbook_3">
                     
-                        <h2 id="">增加搜索条</h2>
-<p>我们继续充实我们应用程序的功能。如今，我们添加搜索。GTK+在<code>GtkSearchEntry</code>和<code>Gtksearchbar</code>中支持这个功能。搜索条是一个可以嵌入顶端来展现搜索输入。</p>
-<p>我们在头栏增加一个开关按钮，他可以用来滑出头栏下的搜索条。</p>
-<pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">interface</span>&gt;</span>
-  <span class="hljs-comment">&lt;!-- interface-requires gtk+ 3.8 --&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">template</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"ExampleAppWindow"</span> <span class="hljs-attribute">parent</span>=<span class="hljs-value">"GtkApplicationWindow"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"title"</span> <span class="hljs-attribute">translatable</span>=<span class="hljs-value">"yes"</span>&gt;</span>Example Application<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"default-width"</span>&gt;</span>600<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"default-height"</span>&gt;</span>400<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">child</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">object</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"GtkBox"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"content_box"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"visible"</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"orientation"</span>&gt;</span>vertical<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">child</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-title">object</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"GtkHeaderBar"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"header"</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"visible"</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-title">child</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"title"</span>&gt;</span>
-              <span class="hljs-tag">&lt;<span class="hljs-title">object</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"GtkStackSwitcher"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"tabs"</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"visible"</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"margin"</span>&gt;</span>6<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"stack"</span>&gt;</span>stack<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
-              <span class="hljs-tag">&lt;/<span class="hljs-title">object</span>&gt;</span>
-            <span class="hljs-tag">&lt;/<span class="hljs-title">child</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-title">child</span>&gt;</span>
-              <span class="hljs-tag">&lt;<span class="hljs-title">object</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"GtkToggleButton"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"search"</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"visible"</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"sensitive"</span>&gt;</span>False<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-title">style</span>&gt;</span><span class="css">
-                  &lt;<span class="hljs-tag">class</span> <span class="hljs-tag">name</span>="<span class="hljs-tag">image-button</span>"/&gt;
-                </span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-title">child</span>&gt;</span>
-                  <span class="hljs-tag">&lt;<span class="hljs-title">object</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"GtkImage"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"search-icon"</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"visible"</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"icon-name"</span>&gt;</span>edit-find-symbolic<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"icon-size"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
-                  <span class="hljs-tag">&lt;/<span class="hljs-title">object</span>&gt;</span>
-                <span class="hljs-tag">&lt;/<span class="hljs-title">child</span>&gt;</span>
-              <span class="hljs-tag">&lt;/<span class="hljs-title">object</span>&gt;</span>
-              <span class="hljs-tag">&lt;<span class="hljs-title">packing</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"pack-type"</span>&gt;</span>end<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
-              <span class="hljs-tag">&lt;/<span class="hljs-title">packing</span>&gt;</span>
-            <span class="hljs-tag">&lt;/<span class="hljs-title">child</span>&gt;</span>
-          <span class="hljs-tag">&lt;/<span class="hljs-title">object</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-title">child</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">child</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-title">object</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"GtkSearchBar"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"searchbar"</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"visible"</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-title">child</span>&gt;</span>
-              <span class="hljs-tag">&lt;<span class="hljs-title">object</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"GtkSearchEntry"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"searchentry"</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-title">signal</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"search-changed"</span> <span class="hljs-attribute">handler</span>=<span class="hljs-value">"search_text_changed"</span>/&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"visible"</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
-              <span class="hljs-tag">&lt;/<span class="hljs-title">object</span>&gt;</span>
-            <span class="hljs-tag">&lt;/<span class="hljs-title">child</span>&gt;</span>
-          <span class="hljs-tag">&lt;/<span class="hljs-title">object</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-title">child</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">child</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-title">object</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"GtkStack"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"stack"</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-title">signal</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"notify::visible-child"</span> <span class="hljs-attribute">handler</span>=<span class="hljs-value">"visible_child_changed"</span>/&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-title">property</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"visible"</span>&gt;</span>True<span class="hljs-tag">&lt;/<span class="hljs-title">property</span>&gt;</span>
-          <span class="hljs-tag">&lt;/<span class="hljs-title">object</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-title">child</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-title">object</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-title">child</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-title">template</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">interface</span>&gt;</span>
-</code></pre>
-<p>实现搜索条需要更改一点我们还没打算完成的代码。搜索实现的核心是一个监听搜索条文字变化的信号句柄。</p>
-<pre><code class="lang-c">...
-
-<span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span>
-search_text_changed (GtkEntry         *entry,
-                     ExampleAppWindow *win)
-{
-  ExampleAppWindowPrivate *priv;
-  <span class="hljs-keyword">const</span> gchar *text;
-  GtkWidget *tab;
-  GtkWidget *view;
-  GtkTextBuffer *buffer;
-  GtkTextIter start, match_start, match_end;
-
-  text = gtk_entry_get_text (entry);
-
-  <span class="hljs-keyword">if</span> (text[<span class="hljs-number">0</span>] == <span class="hljs-string">'\0'</span>)
-    <span class="hljs-keyword">return</span>;
-
-  priv = example_app_window_get_instance_private (win);
-
-  tab = gtk_stack_get_visible_child (GTK_STACK (priv-&gt;<span class="hljs-built_in">stack</span>));
-  view = gtk_bin_get_child (GTK_BIN (tab));
-  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
-
-  <span class="hljs-comment">/* Very simple-minded search implementation */</span>
-  gtk_text_buffer_get_start_iter (buffer, &amp;start);
-  <span class="hljs-keyword">if</span> (gtk_text_iter_forward_search (&amp;start, text, GTK_TEXT_SEARCH_CASE_INSENSITIVE,
-                                    &amp;match_start, &amp;match_end, NULL))
-    {
-      gtk_text_buffer_select_range (buffer, &amp;match_start, &amp;match_end);
-      gtk_text_view_scroll_to_iter (GTK_TEXT_VIEW (view), &amp;match_start,
-                                    <span class="hljs-number">0.0</span>, FALSE, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>);
-    }
-}
-
-<span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span>
-example_app_window_init (ExampleAppWindow *win)
-{
-
-...
-
-  gtk_widget_class_bind_template_callback (GTK_WIDGET_CLASS (<span class="hljs-keyword">class</span>), search_text_changed);
-
-...
-
-}
-
-...
-</code></pre>
-<p>(<a href="https://git.gnome.org/browse/gtk+/tree/examples/application7/exampleappwin.c" target="_blank">full source</a>)</p>
-<p>加上了搜索条，我们的应用程序现在是这样的：</p>
-<p><img src="../../images/getting-started-app7.png" alt="getting-started-app7.png"></p>
+                        <h2 id="gtk">GTK+小程序范例</h2>
+<p>这里将会展示使用GTK3+进行一个完整小程序制作的过程。</p>
 
                     
                     </section>
@@ -640,10 +520,8 @@ example_app_window_init (ExampleAppWindow *win)
         </div>
 
         
-        <a href="../../content/building_app/dialog.html" class="navigation navigation-prev " aria-label="Previous page: 一个偏好对话框"><i class="fa fa-angle-left"></i></a>
+        <a href="../../content/chap-input-handing.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: GTK+ 输入处理模型"><i class="fa fa-angle-left"></i></a>
         
-        
-        <a href="../../content/building_app/sidebar.html" class="navigation navigation-next " aria-label="Next page: 增加侧边栏"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
