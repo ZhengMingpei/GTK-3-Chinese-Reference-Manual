@@ -7,7 +7,7 @@
 
 该参考手册适用于GTK+3的3.14.5版本，最新版本的参考手册可以去[这里](http://developer.gnome.org/gtk3/)在线查看。如果你在寻找GTK2的手册，可以移步到[这里](http://developer.gnome.org/gtk2/)查看。
 
-**本项目受[ The Swift Programming Language 中文版项目](https://github.com/numbbbbb/the-swift-programming-language-in-chinese)启发，决定也用[GitBook](https://www.gitbook.io/)完成这个翻译项目。请记住本中文手册的在线查看网址是[这里](http://zhengmingpei.github.io/GTK-3-Chinese-Reference-Manual/)，目前手册的Beta PDF版本已经更新，可以到[这里](https://github.com/ZhengMingpei/GTK-3-Chinese-Reference-Manual/blob/gh-pages/content/Beta1-GTK-3-Chinese-Reference-Manual.pdf)下载。**
+**本项目受[ The Swift Programming Language 中文版项目](https://github.com/numbbbbb/the-swift-programming-language-in-chinese)启发，决定也用[GitBook](https://www.gitbook.io/)完成这个翻译项目。请记住本中文手册的在线查看网址是[这里](http://zhengmingpei.github.io/GTK-3-Chinese-Reference-Manual/)，目前手册的Beta PDF版本已经更新，可以到[这里](http://pan.baidu.com/s/1pJ1bI1X)下载。**
 
 ### 目录结构
 
